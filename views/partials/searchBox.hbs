@@ -1,0 +1,73 @@
+<div class="container mt-4">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar..." id="nombre" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="filterButton">
+                FILTRAR
+            </button>
+        </div>
+        <div class="search-filter-menu" id="filterMenu">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="precio_min">Precio mínimo:</label>
+                        <input type="number" class="form-control" id="precio_min" placeholder="Precio mínimo" min="0" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="precio_max">Precio máximo:</label>
+                        <input type="number" class="form-control" id="precio_max" placeholder="Precio máximo" min="0" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exis_min">Existencias mínimas:</label>
+                        <input type="number" class="form-control" id="exis_min" placeholder="Existencias mínimas"
+                            min="0" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exis_max">Existencias máximas:</label>
+                        <input type="number" class="form-control" id="exis_max" placeholder="Existencias máximas"
+                            min="0" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", "#filterButton", function (e) {
+            e.stopPropagation(); // Prevent the click from propagating to the document
+            $("#filterMenu").toggle();
+            var searchWidth = $("#searchInput").outerWidth();
+            $("#filterMenu").css("width", searchWidth);
+        });
+        $(document).click(function (e) {
+            if (
+                !$(e.target).closest("#filterMenu").length &&
+                !$(e.target).is("#filterButton")
+            ) {
+                $("#filterMenu").hide();
+            }
+        });
+    });
+</script>
+<style>
+    .search-filter-menu {
+        display: none;
+        position: absolute;
+        top: calc(100%);
+        /* Position just below the search box */
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 999;
+        /* Ensure the menu is on top */
+    }
+</style>

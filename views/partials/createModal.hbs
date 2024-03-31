@@ -1,0 +1,52 @@
+<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Crear
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Carga un producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" id="descripcion" name="descripcion" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" id="precio" name="precio" min="0" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="existencias" class="form-label">Cantidad</label>
+                            <input type="number" id="existencias" name="existencias" min="0" class="form-control"
+                                required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" id="imagen" name="imagen" class="form-control" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-success" id="createBtn">
+                    Cargar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
