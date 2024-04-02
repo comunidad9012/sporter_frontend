@@ -1,0 +1,11 @@
+#message-display {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-top: 1%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 9999;
+  border-radius: 0;
+  text-align: center;
+}
