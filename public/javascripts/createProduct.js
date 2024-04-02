@@ -1,4 +1,8 @@
 import { requestURL } from "/static/javascripts/catalogRequestHelpers.js";
+import {
+  clearAlerts,
+  displayResponseMessages,
+} from "/static/javascripts/alertMessages.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const modalCreatProduct = document.querySelector("#exampleModal");
@@ -29,6 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
       body: dataCreate,
     };
 
-    await fetch(requestURL + "crear", postOptions);
+    await fetch(requestURL + "crear", postOptions)
+      .then((response) =>
+        response
+          .json()
+          .then((data) => ({ status_code: response.status, data: data }))
+      )
+      .then((obj) => {
+        console.log(obj);
+        clearAlerts();
+        displayResponseMessages(obj);
+      });
   });
 });
