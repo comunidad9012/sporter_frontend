@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>¿Estás seguro de que deseas eliminar este producto?</p>
+            <button id="confirmDeleteBtn">Confirmar</button>
+            <button id="cancelDeleteBtn">Cancelar</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+        const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+
+        confirmDeleteBtn.addEventListener("click", async function () {
+            // Me falta la obtencion del id del producto, esto es de prueba
+            const productId = document.getElementById('productId').value;
+
+            try {
+            const response = await fetch('http://localhost:5000/api/producto/eliminar', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: productId })
+            });
+
+            if (response.ok) {
+                console.log('Producto eliminado correctamente');
+            } else {
+                const errorData = await response.json();
+                console.error('Error al eliminar el producto:', errorData.error);
+            }
+            } catch (error) {
+
+            console.error('Error en la solicitud:', error);
+            }
+        });
+        // botón de cancelar
+        cancelDeleteBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+        });
+    </script>
+
+</body>
+</html>
