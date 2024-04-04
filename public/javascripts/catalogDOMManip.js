@@ -25,6 +25,7 @@ function cleanPagesLists() {
 function createCard(productData) {
   // Create elements
   const cardEl = document.createElement("div");
+  cardEl.setAttribute("id", productData["id"]);
   cardEl.classList.add(
     "col-sm-2",
     "m-3",
@@ -32,6 +33,11 @@ function createCard(productData) {
     "d-flex",
     "flex-column"
   );
+
+  const btnEl = document.createElement("button");
+  btnEl.textContent="Modificar";
+  btnEl.setAttribute("id", productData["id"])
+
 
   const imgEl = document.createElement("img");
   imgEl.src = `data:image/jpeg;base64,${productData["imagen"]}`;
@@ -70,7 +76,12 @@ function createCard(productData) {
   // cardEl.appendChild(descrEl);
   numRow.appendChild(priceEl);
   numRow.appendChild(exisEl);
+  numRow.append(btnEl)
   cardEl.appendChild(numRow);
+
+  btnEl.addEventListener("click", (evento) => {
+    window.location=`/actualizar/${productData["id"]}`
+  })
 
   return cardEl;
 }
@@ -139,6 +150,7 @@ function createPageList(totalPages, query) {
 
   return pageBtnArray;
 }
+
 
 function populatePagesLists(pageBtnArray2D) {
   const bothPageListsElements = document.querySelectorAll(".pageList");

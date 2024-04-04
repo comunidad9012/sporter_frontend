@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" class="form-control" required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label>
+                    <input type="number" id="precio" name="precio" step="0.01" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen:</label>
+                    <input type="file" id="imagen" name="imagen" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Actualizar Producto</button>
+            </form>
+        </div>
+    </div>
+</div>

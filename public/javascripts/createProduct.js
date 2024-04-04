@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   sumbitButton.addEventListener("click", async function () {
-    console.log("SUMBIT BUTTON SUBMITTED");
+    
     const dataCreate = new FormData();
 
     dataCreate.append("nombre", productName.value);
