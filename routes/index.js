@@ -7,7 +7,6 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/actualizar/:productID", function (req, res, next) {
-  console.log(process.env.REQUEST_URL);
   res.render("editarProducto", {
     productID: req.params.productID,
     requestURL: process.env.REQUEST_URL,
