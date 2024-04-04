@@ -1,5 +1,10 @@
 import { requestURL } from "/static/javascripts/catalogRequestHelpers.js";
 
+import {
+  clearAlerts,
+  displayResponseMessages,
+} from "/static/javascripts/alertMessages.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
   const nombreElement = document.getElementById("nombre");
   const descripcionElement = document.getElementById("descripcion");
@@ -33,4 +38,33 @@ document.addEventListener("DOMContentLoaded", async function () {
       imagenDisplay.src = `data:image/jpeg;base64,${data["imagen"]}`;
       // imagenElement.value = data["img_orig_name"];
     });
+
+  const sumbitBtn = document.getElementById("sumbitUpdate");
+
+  sumbitBtn.addEventListener("click", async function () {
+    const updateForm = new FormData();
+    updateForm.append("id", window.location.href.split("/").reverse()[0]);
+    updateForm.append("nombre", nombreElement.value);
+    updateForm.append("descripcion", descripcionElement.value);
+    updateForm.append("precio", precioElement.value);
+    updateForm.append("existencias", existenciasElement.value);
+    updateForm.append("filename", imagenElement.files[0]);
+
+    const requestInfo = {
+      method: "POST",
+      body: updateForm,
+    };
+
+    await fetch(requestURL + "/actualizar", requestInfo)
+      .then((response) =>
+        response
+          .json()
+          .then((data) => ({ status_code: response.status, data: data }))
+      )
+      .then((obj) => {
+        console.log(obj);
+        clearAlerts();
+        displayResponseMessages(obj);
+      });
+  });
 });
