@@ -8,6 +8,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   const imagenElement = document.getElementById("imagen");
   const imagenDisplay = document.getElementById("image_display");
 
+  function handleImageSelect(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imagenDisplay.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  // Attach event listener to imagenElement
+  imagenElement.addEventListener("change", handleImageSelect);
+
   await fetch(requestURL + document.querySelector("#productID").value)
     .then((response) => response.json())
     .then((data) => {
