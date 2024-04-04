@@ -25,6 +25,7 @@ function cleanPagesLists() {
 function createCard(productData) {
   // Create elements
   const cardEl = document.createElement("div");
+  cardEl.setAttribute("id", productData["id"]);
   cardEl.classList.add(
     "col-sm-2",
     "m-3",
