@@ -35,6 +35,7 @@ function createCard(productData) {
   );
 
   const btnEl = document.createElement("button");
+  btnEl.classList.add("btn", "btn-secondary")
   btnEl.textContent="Modificar";
   btnEl.setAttribute("id", productData["id"])
 
@@ -73,7 +74,6 @@ function createCard(productData) {
 
   cardEl.appendChild(imgEl);
   cardEl.appendChild(nameEl);
-  // cardEl.appendChild(descrEl);
   numRow.appendChild(priceEl);
   numRow.appendChild(exisEl);
   numRow.append(btnEl)
