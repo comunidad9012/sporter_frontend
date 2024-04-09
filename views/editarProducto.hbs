@@ -26,9 +26,23 @@
                     <label for="imagen" class="form-label">Imagen:</label>
                     <input type="file" id="imagen" name="imagen" class="form-control" required>
                 </div>
+<<<<<<< Updated upstream
                 
                 <button type="submit" class="btn btn-primary">Actualizar Producto</button>
             </form>
+=======
+                <div class="col-md-6">
+                    <label for="precio" class="form-label">Etiqueta</label>
+                    <select class="form-select" aria-label="Default select example" id="select"> </select>
+                </div>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Eliminar Producto
+                </button>
+                {{>eliminarProducto}}
+                <a href="/"><button type="" class="btn btn-warning mr-5">Volver a Catalogo</button></a>
+                <button type="submit" id="sumbitUpdate" class="btn btn-primary">Actualizar Producto</button>
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
 </div>

@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
           .then((data) => ({ status_code: response.status, data: data }))
       )
       .then((obj) => {
-        console.log(obj);
         clearAlerts();
         displayResponseMessages(obj);
       });
