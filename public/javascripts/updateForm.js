@@ -1,4 +1,4 @@
-import { requestURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
 
 import {
   clearAlerts,
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Attach event listener to imagenElement
   imagenElement.addEventListener("change", handleImageSelect);
 
-  await fetch(requestURL + document.querySelector("#productID").value)
+  await fetch(APIProductURL + document.querySelector("#productID").value)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       body: updateForm,
     };
 
-    await fetch(requestURL + "/actualizar", requestInfo)
+    await fetch(APIProductURL + "actualizar", requestInfo)
       .then((response) =>
         response
           .json()
