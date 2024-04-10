@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       descripcionElement.value = data["descripcion"];
       precioElement.value = data["precio"];
       existenciasElement.value = data["existencias"];
-      productEtiqueta.value = data["id_etiqueta"];
+      productEtiqueta.value = data.etiqueta["id"];
       imagenDisplay.src = `data:image/jpeg;base64,${data["imagen"]}`;
       // imagenElement.value = data["img_orig_name"];
     });
