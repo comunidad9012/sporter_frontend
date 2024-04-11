@@ -1,4 +1,6 @@
-const requestURL = document.getElementById("requestURL").value;
+const APIBaseURL = document.getElementById("APIBaseURL").value + "/api/";
+const APIProductURL = APIBaseURL + "producto/";
+const APIEtiquetaURL = APIBaseURL + "etiqueta/";
 
 function makeGetQueryURL(arrayOfKeyInputs) {
   const parameters = {};
@@ -14,6 +16,4 @@ function makeGetQueryURL(arrayOfKeyInputs) {
   return "?" + queryParameters;
 }
 
-
-
-export { requestURL, makeGetQueryURL };
+export { APIBaseURL, makeGetQueryURL, APIProductURL, APIEtiquetaURL };

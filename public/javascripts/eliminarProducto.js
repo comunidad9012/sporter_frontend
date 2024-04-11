@@ -1,4 +1,4 @@
-import { requestURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
@@ -6,18 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   confirmDeleteBtn.addEventListener("click", async function () {
     // Me falta la obtencion del id del producto, esto es de prueba
-    const productId =  window.location.href.split('/').reverse()[0];
+    const productId = window.location.href.split("/").reverse()[0];
 
     try {
-      const response = await fetch(
-          requestURL + "/eliminar/" + productId,
-        {
-          method: "POST",
-        }
-      );
+      const response = await fetch(APIProductURL + "eliminar/" + productId, {
+        method: "POST",
+      });
 
       if (response.ok) {
-          window.location.href = "/";
+        window.location.href = "/";
       } else {
         const errorData = await response.json();
         console.error("Error al eliminar el producto:", errorData.error);

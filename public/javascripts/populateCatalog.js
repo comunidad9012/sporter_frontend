@@ -1,5 +1,5 @@
 import {
-  requestURL,
+  APIProductURL,
   makeGetQueryURL,
 } from "/static/javascripts/catalogRequestHelpers.js";
 
@@ -13,7 +13,7 @@ import {
 } from "/static/javascripts/catalogDOMManip.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  await fetch(requestURL)
+  await fetch(APIProductURL)
     .then((response) => response.json())
     .then((data) => {
       const container = document.getElementById("catalogo");
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       container.appendChild(makeRowOfCards(createCardArray(data)));
       cleanPagesLists();
       populatePagesLists([
-        createPageList(data["total_pages"], requestURL + "?"),
-        createPageList(data["total_pages"], requestURL + "?"),
+        createPageList(data["total_pages"], APIProductURL + "?"),
+        createPageList(data["total_pages"], APIProductURL + "?"),
       ]);
     });
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       const keyInputs = [nombre, precio_min, precio_max, exis_min, exis_max];
 
-      const completeQuery = requestURL + makeGetQueryURL(keyInputs);
+      const completeQuery = APIProductURL + makeGetQueryURL(keyInputs);
 
       console.log("rNu", completeQuery);
 

@@ -1,4 +1,4 @@
-import { requestURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
 import {
   clearAlerts,
   displayResponseMessages,
@@ -17,17 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   modalCreatProduct.addEventListener("shown.bs.modal", async function () {
     productName.focus();
-    const selectForm = document.querySelector("#select")
-    await fetch("http://127.0.0.1:5000/api/etiqueta/leer/").then(resp=> resp.json()).then(datos=>{
-      datos.forEach(etiqueta => {
-        let optionEtiqueta= document.createElement("option")
-        optionEtiqueta.textContent=etiqueta.nombre
-        optionEtiqueta.setAttribute("value", `${etiqueta.id}`)
-        selectForm.appendChild(optionEtiqueta)
-  })})})
+    const selectForm = document.querySelector("#select");
+    await fetch("http://127.0.0.1:5000/api/etiqueta/leer/")
+      .then((resp) => resp.json())
+      .then((datos) => {
+        datos.forEach((etiqueta) => {
+          let optionEtiqueta = document.createElement("option");
+          optionEtiqueta.textContent = etiqueta.nombre;
+          optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
+          selectForm.appendChild(optionEtiqueta);
+        });
+      });
+  });
 
   sumbitButton.addEventListener("click", async function () {
-    
     const dataCreate = new FormData();
 
     dataCreate.append("nombre", productName.value);
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: dataCreate,
     };
 
-    await fetch(requestURL + "crear", postOptions)
+    await fetch(APIProductURL + "crear", postOptions)
       .then((response) =>
         response
           .json()
