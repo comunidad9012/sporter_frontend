@@ -12,6 +12,18 @@ document.addEventListener("DOMContentLoaded", async function () {
   const existenciasElement = document.getElementById("existencias");
   const imagenElement = document.getElementById("imagen");
   const imagenDisplay = document.getElementById("image_display");
+  const productEtiqueta = document.querySelector("#select");
+
+  await fetch("http://127.0.0.1:5000/api/etiqueta/leer/")
+    .then((resp) => resp.json())
+    .then((datos) => {
+      datos.forEach((etiqueta) => {
+        let optionEtiqueta = document.createElement("option");
+        optionEtiqueta.textContent = etiqueta.nombre;
+        optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
+        productEtiqueta.appendChild(optionEtiqueta);
+      });
+    });
 
   function handleImageSelect(event) {
     const file = event.target.files[0];
@@ -30,11 +42,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   await fetch(requestURL + document.querySelector("#productID").value)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       nombreElement.value = data["nombre"];
       descripcionElement.value = data["descripcion"];
       precioElement.value = data["precio"];
       existenciasElement.value = data["existencias"];
+      productEtiqueta.value = data.etiqueta["id"];
       imagenDisplay.src = `data:image/jpeg;base64,${data["imagen"]}`;
       // imagenElement.value = data["img_orig_name"];
     });
@@ -49,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     updateForm.append("precio", precioElement.value);
     updateForm.append("existencias", existenciasElement.value);
     updateForm.append("filename", imagenElement.files[0]);
-
+    updateForm.append("id_etiqueta", productEtiqueta.value);
     const requestInfo = {
       method: "POST",
       body: updateForm,

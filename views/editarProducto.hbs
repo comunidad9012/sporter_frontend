@@ -27,17 +27,26 @@
                 </div>
                 </div>
                 
-                <div class="mb-3">
+                <div class="mb-3 row">
+                <div class="mb-3 col">
                     <label for="imagen" class="form-label">Nueva Imagen:</label>
                     <input type="file" id="imagen" name="imagen" class="form-control">
                 </div>
                 
+                <div class="mb-3 col">
+                    <label for="precio" class="form-label">Etiqueta</label>
+                    <select class="form-select" aria-label="Default select example" id="select"> </select>
+                </div>
+                </div>
+
                 <div class="mb-3">
                     <label for="image_display">Imagen actual:</label>
                     <img src="" alt="" id="image_display">
                 </div>
+                
+            </form>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-                    Elimnar Producto
+                    Eliminar Producto
                 </button>
                 {{>eliminarProducto}}
                 <a href="/"><button type="" class="btn btn-warning mr-5">Volver a Catalogo</button></a>
