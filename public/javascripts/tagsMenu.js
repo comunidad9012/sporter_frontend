@@ -1,3 +1,5 @@
+import { APIEtiquetaURL } from "/static/javascripts/catalogRequestHelpers.js";
+
 // Función para filtrar y mostrar solo los productos relacionados con el tag seleccionado
 async function filterProducts(tagName) {
   const requestURL = `${document.getElementById("requestURL").value}?tag=${tagName}`;
@@ -6,13 +8,13 @@ async function filterProducts(tagName) {
 
 // Función para hacer la solicitud a la API y poblar la tabla
 async function populateTable(requestURL) {
-  const response = await fetch("http://localhost:5000/api/etiqueta/leer/");
+  const response = await fetch(APIEtiquetaURL + "/leer/");
   const data = await response.json();
-  
+
   const tableBody = document.getElementById("tag-table-body");
-  
+
   tableBody.innerHTML = "";
-  
+
   // Iteramos sobre los datos y creamos filas para la tabla
   data.forEach(tag => {
     const row = document.createElement("tr");
@@ -35,4 +37,4 @@ async function populateTable(requestURL) {
 }
 
 // Llamamos a la función para poblar la tabla al cargar la página
-window.onload = () => populateTable(document.getElementById("requestURL").value);
+window.onload = () => populateTable();
