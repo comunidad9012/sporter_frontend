@@ -9,8 +9,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/static/stylesheets/global.css">
-
+  <link rel="stylesheet" href="public/stylesheets/style.css"> <!-- Vinculación al archivo style.css -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -21,14 +20,47 @@
     crossorigin="anonymous"></script>
 
 
+  <script src="/static/javascripts/catalogDOMManip.js" type="module"></script>
   <script src="/static/javascripts/catalogRequestHelpers.js" type="module"></script>
   <title>Catalogo Productos</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+<<<<<<< Updated upstream
   <input type="text" hidden id="APIBaseURL" value={{APIBaseURL}}>
+=======
+  <input type="text" hidden id="requestURL" value="{{requestURL}}">
+>>>>>>> Stashed changes
   <div id="message-display" class="container-fluid"></div>
+  
+  <!-- Inicio del menú de tags -->
+  <div class="menu">
+    <ul>
+      <li><button onclick="filterProducts('Fútbol')">Fútbol</button></li>
+      <!-- Agrega aquí los demás botones para otras categorías -->
+    </ul>
+  </div>
+  <!-- Fin del menú de tags -->
+
+  <!-- Agregamos la tabla -->
+  <table id="tag-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Total Productos</th>
+      </tr>
+    </thead>
+    <tbody id="tag-table-body">
+      <!-- Aquí se insertarán las filas de la tabla -->
+    </tbody>
+  </table>
+
+  <!-- Vinculamos el archivo JavaScript -->
+  <script src="/static/javascripts/tagsMenu.js"></script>
+
   {{{body}}}
 </body>
+
 
 </html>

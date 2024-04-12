@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: dataCreate,
     };
 
-    await fetch(APIProductURL + "crear", postOptions)
+    await fetch(requestURL + "crear", postOptions)
       .then((response) =>
         response
           .json()
