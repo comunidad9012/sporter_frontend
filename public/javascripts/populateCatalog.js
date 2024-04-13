@@ -5,12 +5,15 @@ import {
 
 import {
   clearCatalog,
+  createCardArray,
+  makeRowOfCards,
+} from "/static/javascripts/productsUI.js";
+
+import {
   cleanPagesLists,
   createPageList,
   populatePagesLists,
-  createCardArray,
-  makeRowOfCards,
-} from "/static/javascripts/catalogDOMManip.js";
+} from "/static/javascripts/pagination.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   await fetch(APIProductURL)
