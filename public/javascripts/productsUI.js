@@ -14,16 +14,15 @@ function createCard(infoProducto) {
   const productoImagen = document.createElement("img");
 
   const filaNumericos = document.createElement("div");
-  const botonModificar = crearBotonModicar(infoProducto["id"]);
+  const botonModificar = crearBotonModicar(infoProducto.id);
 
-  productoTarjeta.setAttribute("id", infoProducto["id"]);
+  productoTarjeta.setAttribute("id", infoProducto.id);
 
-  productoImagen.src = `data:image/jpeg;base64,${infoProducto["imagen"]}`;
+  productoImagen.src = `data:image/jpeg;base64,${infoProducto.imagen}`;
 
-  productoNombre.textContent = infoProducto["nombre"];
-  productoPrecio.textContent = "Precio: " + infoProducto["precio"];
-  productoExistencias.textContent =
-    "Existencias: " + infoProducto["existencias"];
+  productoNombre.textContent = infoProducto.nombre;
+  productoPrecio.textContent = "Precio: " + infoProducto.precio;
+  productoExistencias.textContent = "Existencias: " + infoProducto.existencias;
 
   productoImagen.classList.add(
     "img-thumbnail",
@@ -55,9 +54,10 @@ function createCard(infoProducto) {
   return productoTarjeta;
 }
 
-function createCardArray(data) {
+function createCardArray(dataResponse) {
   const cardArray = [];
-  for (const product of data["search_result"]) {
+
+  for (const product of dataResponse.search_result) {
     cardArray.push(createCard(product));
   }
 
