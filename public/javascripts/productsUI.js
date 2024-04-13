@@ -1,4 +1,10 @@
-function clearCatalog() {
+export function populateCatalog(dataResponse) {
+  clearCatalog();
+  const container = document.getElementById("catalogo");
+  container.appendChild(makeRowOfCards(createCardArray(dataResponse)));
+}
+
+export function clearCatalog() {
   const container = document.getElementById("catalogo");
   if (container.querySelector("#productsFlexRow") != undefined) {
     container.removeChild(container.querySelector("#productsFlexRow"));
@@ -99,5 +105,3 @@ function crearBotonModicar(id_producto) {
 
   return botonModificar;
 }
-
-export { clearCatalog, createCard, createCardArray, makeRowOfCards };

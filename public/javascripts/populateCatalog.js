@@ -3,11 +3,7 @@ import {
   makeGetQueryURL,
 } from "/static/javascripts/catalogRequestHelpers.js";
 
-import {
-  clearCatalog,
-  createCardArray,
-  makeRowOfCards,
-} from "/static/javascripts/productsUI.js";
+import { populateCatalog } from "/static/javascripts/productsUI.js";
 
 import {
   cleanPagesLists,
@@ -19,9 +15,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   await fetch(APIProductURL)
     .then((response) => response.json())
     .then((data) => {
-      const container = document.getElementById("catalogo");
-      clearCatalog();
-      container.appendChild(makeRowOfCards(createCardArray(data)));
+      populateCatalog(data);
       cleanPagesLists();
       populatePagesLists([
         createPageList(data["total_pages"], APIProductURL + "?"),
@@ -48,9 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       await fetch(completeQuery)
         .then((response) => response.json())
         .then((data) => {
-          const container = document.getElementById("catalogo");
-          clearCatalog();
-          container.appendChild(makeRowOfCards(createCardArray(data)));
+          populateCatalog(data);
           cleanPagesLists();
           populatePagesLists([
             createPageList(data["total_pages"], completeQuery),
