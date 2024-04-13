@@ -5,11 +5,38 @@ function clearCatalog() {
   }
 }
 
-function createCard(productData) {
-  // Create elements
-  const cardEl = document.createElement("div");
-  cardEl.setAttribute("id", productData["id"]);
-  cardEl.classList.add(
+function createCard(infoProducto) {
+  const productoTarjeta = document.createElement("div");
+
+  const productoNombre = document.createElement("h5");
+  const productoPrecio = document.createElement("h6");
+  const productoExistencias = document.createElement("h6");
+  const productoImagen = document.createElement("img");
+
+  const filaNumericos = document.createElement("div");
+  const botonModificar = crearBotonModicar(infoProducto["id"]);
+
+  productoTarjeta.setAttribute("id", infoProducto["id"]);
+
+  productoImagen.src = `data:image/jpeg;base64,${infoProducto["imagen"]}`;
+
+  productoNombre.textContent = infoProducto["nombre"];
+  productoPrecio.textContent = "Precio: " + infoProducto["precio"];
+  productoExistencias.textContent =
+    "Existencias: " + infoProducto["existencias"];
+
+  productoImagen.classList.add(
+    "img-thumbnail",
+    "img",
+    "img-responsive",
+    "full-width",
+    "thumbnailElement"
+  );
+  productoImagen.style = "width: 100%; height: auto";
+  productoNombre.classList.add("text-center", "mt-2", "nameElement");
+  productoPrecio.classList.add("col", "text-center", "priceElement");
+  productoExistencias.classList.add("col", "text-center", "priceElement");
+  productoTarjeta.classList.add(
     "col-sm-2",
     "m-3",
     "cardElement",
@@ -17,55 +44,15 @@ function createCard(productData) {
     "flex-column"
   );
 
-  const btnEl = document.createElement("button");
-  btnEl.classList.add("btn", "btn-secondary");
-  btnEl.textContent = "Modificar";
-  btnEl.setAttribute("id", productData["id"]);
+  filaNumericos.classList.add("row");
+  filaNumericos.appendChild(productoPrecio);
+  filaNumericos.appendChild(productoExistencias);
+  productoTarjeta.appendChild(productoImagen);
+  productoTarjeta.appendChild(productoNombre);
+  productoTarjeta.appendChild(filaNumericos);
+  productoTarjeta.append(botonModificar);
 
-  const imgEl = document.createElement("img");
-  imgEl.src = `data:image/jpeg;base64,${productData["imagen"]}`;
-  imgEl.classList.add(
-    "img-thumbnail",
-    "img",
-    "img-responsive",
-    "full-width",
-    "thumbnailElement"
-  );
-  imgEl.style = "width: 100%; height: auto";
-  // img.alt = "texto alternativo";
-
-  const nameEl = document.createElement("h5");
-  nameEl.classList.add("text-center", "mt-2", "nameElement");
-  nameEl.textContent = productData["nombre"];
-
-  // const descrEl = document.createElement("p");
-  // descrEl.classList.add("text-center", "descrElement");
-  // descrEl.classList.add("size");
-  // descrEl.textContent = productData["descripcion"];
-
-  const numRow = document.createElement("div");
-  numRow.classList.add("row");
-
-  const priceEl = document.createElement("h6");
-  priceEl.textContent = "Precio: " + productData["precio"];
-  priceEl.classList.add("col", "text-center", "priceElement");
-
-  const exisEl = document.createElement("h6");
-  exisEl.textContent = "Existencias: " + productData["existencias"];
-  exisEl.classList.add("col", "text-center", "priceElement");
-
-  cardEl.appendChild(imgEl);
-  cardEl.appendChild(nameEl);
-  numRow.appendChild(priceEl);
-  numRow.appendChild(exisEl);
-  numRow.append(btnEl);
-  cardEl.appendChild(numRow);
-
-  btnEl.addEventListener("click", (evento) => {
-    window.location = `/actualizar/${productData["id"]}`;
-  });
-
-  return cardEl;
+  return productoTarjeta;
 }
 
 function createCardArray(data) {
@@ -98,6 +85,19 @@ function makeRowOfCards(arrayOfCards) {
   }
 
   return rowFlex;
+}
+
+function crearBotonModicar(id_producto) {
+  const botonModificar = document.createElement("button");
+
+  botonModificar.classList.add("btn", "btn-secondary");
+  botonModificar.textContent = "Modificar";
+
+  botonModificar.addEventListener("click", (evento) => {
+    window.location = `/actualizar/${id_producto}`;
+  });
+
+  return botonModificar;
 }
 
 export { clearCatalog, createCard, createCardArray, makeRowOfCards };
