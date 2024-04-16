@@ -1,3 +1,23 @@
+import { populateCatalog } from "/static/javascripts/productsUI.js";
+import { productoApi } from "/static/classes/resources.js";
+
+function makePageSearchElement(pageNumber) {
+  const SearchByPageNumberElement = document.createElement("a");
+  SearchByPageNumberElement.classList.add("page-link");
+  SearchByPageNumberElement.textContent = pageNumber;
+  SearchByPageNumberElement.href = "#";
+
+  SearchByPageNumberElement.addEventListener("click", async function (event) {
+    setCurrentPageNumber(pageNumber);
+    setActivePageButtonsOnClick(pageNumber);
+    await productoApi.buscar().then((data) => {
+      populateCatalog(data);
+    });
+  });
+
+  return SearchByPageNumberElement;
+}
+
 function cleanPagesLists() {
   const bothPageListsElements = document.querySelectorAll(".pageList");
 
@@ -15,26 +35,15 @@ function cleanPagesLists() {
   }
 }
 
-function createPageBtn(number, pagedQuery) {
+function createPageBtn(number) {
   const listItem = document.createElement("li");
-  listItem.classList.add("page-item");
-  const linker = document.createElement("a");
-  linker.classList.add("page-link");
-  linker.textContent = number;
-  linker.href = "#";
 
-  linker.addEventListener("click", async function () {
-    console.log("rNu", pagedQuery);
-    await fetch(pagedQuery)
-      .then((response) => response.json())
-      .then((data) => {
-        const container = document.getElementById("catalogo");
-        clearCatalog();
-        container.appendChild(makeRowOfCards(createCardArray(data)));
-      });
-  });
+  setActivePageButtonsOnCreation(number, listItem);
+  listItem.classList.add("page-item", `page-btn-${number}`);
 
-  listItem.appendChild(linker);
+  const getSearchByPageNumber = makePageSearchElement(number);
+
+  listItem.appendChild(getSearchByPageNumber);
   return listItem;
 }
 
