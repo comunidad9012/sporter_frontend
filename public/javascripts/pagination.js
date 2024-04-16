@@ -1,6 +1,18 @@
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 import { productoApi } from "/static/classes/resources.js";
 
+function setCurrentPageNumber(pageNumber) {
+  if (pageNumber < 0) {
+    pageNumber = -pageNumber;
+  }
+
+  window.sessionStorage.setItem(
+    "oldPage",
+    window.sessionStorage.getItem("page")
+  );
+  window.sessionStorage.setItem("page", pageNumber);
+}
+
 function setActivePageButtonsOnClick() {
   let previousPageNumber = window.sessionStorage.getItem("oldPage");
   const pageNumber = window.sessionStorage.getItem("page");
