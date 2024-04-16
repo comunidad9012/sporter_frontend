@@ -1,40 +1,35 @@
-import { APIEtiquetaURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { APIEtiquetaURL, APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
 
-// Función para filtrar y mostrar solo los productos relacionados con el tag seleccionado
-async function filterProducts(tagName) {
-  const requestURL = `${document.getElementById("requestURL").value}?tag=${tagName}`;
-  populateTable(requestURL);
-}
-
-// Función para hacer la solicitud a la API y poblar la tabla
-async function populateTable(requestURL) {
-  const response = await fetch(APIEtiquetaURL + "/leer/");
+// Función para hacer la solicitud a la API y poblar la lista
+async function populateList(requestURL) {
+  const response = await fetch(requestURL);
   const data = await response.json();
 
-  const tableBody = document.getElementById("tag-table-body");
+  const tagList = document.getElementById("tag-list");
 
-  tableBody.innerHTML = "";
+  tagList.innerHTML = "";
 
-  // Iteramos sobre los datos y creamos filas para la tabla
+  // Iteramos sobre los datos y creamos elementos de lista para la lista
   data.forEach(tag => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${tag.id}</td>
-      <td><button class="tag-button" data-tag="${tag.nombre}">${tag.nombre}</button></td>
-      <td>${tag.total_productos}</td>
+    const divBotones = document.querySelector('#botones');
+    const listItem = document.createElement("li");
+    listItem.classList.add("tag-list-item");
+    listItem.innerHTML = `
+      <button class="tag-button" data-tag="${tag.nombre}">${tag.nombre} (${tag.total_productos})</button>
     `;
-    tableBody.appendChild(row);
+    tagList.appendChild(listItem);
+    divBotones.appendChild(tagList);
   });
 
   // Agregar un event listener a cada botón para manejar el clic
-  document.querySelectorAll('.tag-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const tagName = button.getAttribute('data-tag');
+  document.querySelectorAll(".tag-button").forEach(button => {
+    button.addEventListener("click", () => {
+      const tagName = button.getAttribute("data-tag");
       // Llamar a la función para filtrar los productos relacionados con el tag
       filterProducts(tagName);
     });
   });
 }
 
-// Llamamos a la función para poblar la tabla al cargar la página
-window.onload = () => populateTable();
+// Llamamos a la función para poblar la lista al cargar la página
+window.onload = () => populateList(APIEtiquetaURL + "/leer/");
