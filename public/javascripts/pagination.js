@@ -110,4 +110,10 @@ function populatePagesLists(pageBtnArray2D) {
   }
 }
 
-export { cleanPagesLists, createPageBtn, createPageList, populatePagesLists };
+export function renderPageButtons(data) {
+  cleanPagesLists();
+  populatePagesLists([
+    createPageList(data["total_pages"]),
+    createPageList(data["total_pages"]),
+  ]);
+}
