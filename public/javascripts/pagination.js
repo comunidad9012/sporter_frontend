@@ -47,11 +47,11 @@ function createPageBtn(number) {
   return listItem;
 }
 
-function createPageList(totalPages, query) {
+function createPageList(totalPages) {
   const pageBtnArray = [];
 
   for (let i = 1; i <= totalPages; i++) {
-    pageBtnArray.push(createPageBtn(i, query + `&page=${i}`));
+    pageBtnArray.push(createPageBtn(i));
   }
 
   return pageBtnArray;
