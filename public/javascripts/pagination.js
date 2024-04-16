@@ -1,6 +1,36 @@
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 import { productoApi } from "/static/classes/resources.js";
 
+function setActivePageButtonsOnClick() {
+  let previousPageNumber = window.sessionStorage.getItem("oldPage");
+  const pageNumber = window.sessionStorage.getItem("page");
+
+  if (previousPageNumber === "null") {
+    previousPageNumber = 1;
+  }
+
+  document.querySelectorAll(`.page-btn-${previousPageNumber}`).forEach((e) => {
+    e.classList.remove("active");
+  });
+
+  document.querySelectorAll(`.page-btn-${pageNumber}`).forEach((e) => {
+    e.classList.add("active");
+  });
+}
+
+function setActivePageButtonsOnCreation(pageNumber, pageButton = null) {
+  if (String(pageNumber) === window.sessionStorage.getItem("page")) {
+    pageButton.classList.add("active");
+  }
+  if (
+    window.sessionStorage.getItem("page") === null &&
+    pageNumber === 1 &&
+    pageButton !== null
+  ) {
+    pageButton.classList.add("active");
+  }
+}
+
 function makePageSearchElement(pageNumber) {
   const SearchByPageNumberElement = document.createElement("a");
   SearchByPageNumberElement.classList.add("page-link");
