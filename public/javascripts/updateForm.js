@@ -1,4 +1,4 @@
-import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { etiquetaApi, productoApi } from "/static/classes/resources.js";
 
 import {
   clearAlerts,
@@ -14,16 +14,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   const imagenDisplay = document.getElementById("image_display");
   const productEtiqueta = document.querySelector("#select");
 
-  await fetch("http://127.0.0.1:5000/api/etiqueta/leer/")
-    .then((resp) => resp.json())
-    .then((datos) => {
-      datos.forEach((etiqueta) => {
-        let optionEtiqueta = document.createElement("option");
-        optionEtiqueta.textContent = etiqueta.nombre;
-        optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
-        productEtiqueta.appendChild(optionEtiqueta);
-      });
+  await etiquetaApi.readAll().then((datos) => {
+    datos.forEach((etiqueta) => {
+      let optionEtiqueta = document.createElement("option");
+      optionEtiqueta.textContent = etiqueta.nombre;
+      optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
+      productEtiqueta.appendChild(optionEtiqueta);
     });
+  });
 
   function handleImageSelect(event) {
     const file = event.target.files[0];
@@ -39,8 +37,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Attach event listener to imagenElement
   imagenElement.addEventListener("change", handleImageSelect);
 
-  await fetch(APIProductURL + document.querySelector("#productID").value)
-    .then((response) => response.json())
+  await productoApi
+    .getByIdentifier(document.querySelector("#productID").value)
     .then((data) => {
       nombreElement.value = data["nombre"];
       descripcionElement.value = data["descripcion"];
@@ -62,19 +60,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     updateForm.append("existencias", existenciasElement.value);
     updateForm.append("filename", imagenElement.files[0]);
     updateForm.append("id_etiqueta", productEtiqueta.value);
-    const requestInfo = {
-      method: "POST",
-      body: updateForm,
-    };
 
-    await fetch(APIProductURL + "actualizar", requestInfo)
+    await productoApi
+      .actualizar(updateForm)
       .then((response) =>
         response
           .json()
           .then((data) => ({ status_code: response.status, data: data }))
       )
       .then((obj) => {
-        console.log(obj);
         clearAlerts();
         displayResponseMessages(obj);
       });
