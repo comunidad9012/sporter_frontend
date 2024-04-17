@@ -52,6 +52,18 @@ class apiProducto extends apiHandler {
   }
 
   async buscar(esNuevaBusqueda = false) {
+    let query;
+
+    if (esNuevaBusqueda) {
+      query = this.queryHandler.fromSearchBox();
+    } else {
+      query = this.queryHandler.fromPersistence();
+    }
+
+    return await fetch(this.resourceURL + query).then((response) =>
+      response.json()
+    );
+  }
     return await fetch(
       this.resourceURL + this.queryHandler.makeGetQueryURL(esNuevaBusqueda)
     ).then((response) => response.json());
