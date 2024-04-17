@@ -64,8 +64,10 @@ class apiProducto extends apiHandler {
       response.json()
     );
   }
+
+  async buscarPorEtiqueta(etiqueta) {
     return await fetch(
-      this.resourceURL + this.queryHandler.makeGetQueryURL(esNuevaBusqueda)
+      this.resourceURL + this.queryHandler.fromCustom({ etiqueta: etiqueta })
     ).then((response) => response.json());
   }
 
