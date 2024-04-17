@@ -7,12 +7,23 @@ class queryHandler {
     this.#parametersNames = parametersNames;
   }
 
-  makeGetQueryURL(newQuery = false) {
-    // todo: aqui seria bueno validar que los parametros de busqueda sean validos
-    if (newQuery) {
-      this.#setQueryParameters(this.#getSearchBoxValues());
-    }
+  fromSearchBox() {
+    this.#setQueryParameters(this.#getSearchBoxValues());
+    return this.#makeGetQueryURL();
+  }
 
+  fromCustom(customQuery = null) {
+    if (customQuery !== null) {
+      this.#setQueryParameters(customQuery);
+    }
+    return this.#makeGetQueryURL();
+  }
+
+  fromPersistence() {
+    return this.#makeGetQueryURL();
+  }
+
+  #makeGetQueryURL() {
     const query = new URLSearchParams(this.#getQueryParameters());
 
     return "?" + query;
