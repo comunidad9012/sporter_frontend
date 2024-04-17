@@ -1,4 +1,4 @@
-import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { etiquetaApi, productoApi } from "/static/classes/resources.js";
 import {
   clearAlerts,
   displayResponseMessages,
@@ -18,16 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
   modalCreatProduct.addEventListener("shown.bs.modal", async function () {
     productName.focus();
     const selectForm = document.querySelector("#select");
-    await fetch("http://127.0.0.1:5000/api/etiqueta/leer/")
-      .then((resp) => resp.json())
-      .then((datos) => {
-        datos.forEach((etiqueta) => {
-          let optionEtiqueta = document.createElement("option");
-          optionEtiqueta.textContent = etiqueta.nombre;
-          optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
-          selectForm.appendChild(optionEtiqueta);
-        });
+
+    await etiquetaApi.readAll().then((datos) => {
+      datos.forEach((etiqueta) => {
+        let optionEtiqueta = document.createElement("option");
+        optionEtiqueta.textContent = etiqueta.nombre;
+        optionEtiqueta.setAttribute("value", `${etiqueta.id}`);
+        selectForm.appendChild(optionEtiqueta);
       });
+    });
   });
 
   sumbitButton.addEventListener("click", async function () {
@@ -40,12 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     dataCreate.append("id_etiqueta", productEtiqueta.value);
     dataCreate.append("filename", productImage.files[0]);
 
-    const postOptions = {
-      method: "POST",
-      body: dataCreate,
-    };
-
-    await fetch(APIProductURL + "crear", postOptions)
+    await productoApi
+      .crear(dataCreate)
       .then((response) =>
         response
           .json()
