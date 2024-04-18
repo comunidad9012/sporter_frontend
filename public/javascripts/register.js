@@ -32,7 +32,7 @@ function registrarUsuario() {
       is_admin: is_admin
   };
 
-  fetch('/signup/register', {
+  fetch( document.getElementById("APIBaseURL").value +   '/api/signup/register', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
