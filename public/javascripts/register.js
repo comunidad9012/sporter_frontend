@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //envio de datos a la db
 
 function registrarUsuario() {
-  var nombre = document.getElementById("nombre").value;
+  var nombre = document.getElementById("nombreUsr").value;
   var usuario = document.getElementById("usuario").value;
   var contraseña = document.getElementById("contraseña").value;
   var is_admin = document.getElementById("is_admin").checked;
