@@ -1,8 +1,40 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+/* Modificamos el estilo de la lista */
+#tag-list {
+  list-style-type: none; /* Quitamos los puntos de la lista */
+  padding: 0; /* Quitamos el espacio de relleno */
+  margin: 0; /* Quitamos el margen */
+}
+
+/* Modificamos el estilo de los elementos de la lista */
+.tag-list-item {
+  display: inline-block; /* Mostrar como bloque en línea */
+  margin-right: 10px; /* Margen derecho entre elementos */
+}
+
+/* Estilo de los botones de categorías */
+.tag-button {
+  background-color: #4caf50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espacio de relleno */
+  text-align: center; /* Alinear texto al centro */
+  text-decoration: none; /* Sin subrayado */
+  font-size: 16px; /* Tamaño de la fuente */
+  cursor: pointer; /* Cursor apuntador */
+  border-radius: 8px; /* Radio de borde para bordes redondeados */
+}
+
+.tag-button:hover {
+  background-color: #45a049; /* Cambiar color de fondo al pasar el mouse */
+}
+
+.tag-button:active {
+  background-color: #367a38; /* Cambiar color de fondo al hacer clic */
 }
