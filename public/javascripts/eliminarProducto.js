@@ -1,4 +1,4 @@
-import { APIProductURL } from "/static/javascripts/catalogRequestHelpers.js";
+import { productoApi } from "/static/classes/resources.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
@@ -9,9 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productId = window.location.href.split("/").reverse()[0];
 
     try {
-      const response = await fetch(APIProductURL + "eliminar/" + productId, {
-        method: "POST",
-      });
+      const response = await productoApi.eliminar(productId);
 
       if (response.ok) {
         window.location.href = "/";

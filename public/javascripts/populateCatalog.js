@@ -1,59 +1,29 @@
-import {
-  APIProductURL,
-  makeGetQueryURL,
-} from "/static/javascripts/catalogRequestHelpers.js";
+import { productoApi } from "/static/classes/resources.js";
+import { populateCatalog } from "/static/javascripts/productsUI.js";
 
-import {
-  clearCatalog,
-  cleanPagesLists,
-  createPageList,
-  populatePagesLists,
-  createCardArray,
-  makeRowOfCards,
-} from "/static/javascripts/catalogDOMManip.js";
+import { renderPageButtons } from "/static/javascripts/pagination.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  await fetch(APIProductURL)
-    .then((response) => response.json())
-    .then((data) => {
-      const container = document.getElementById("catalogo");
-      clearCatalog();
-      container.appendChild(makeRowOfCards(createCardArray(data)));
-      cleanPagesLists();
-      populatePagesLists([
-        createPageList(data["total_pages"], APIProductURL + "?"),
-        createPageList(data["total_pages"], APIProductURL + "?"),
-      ]);
-    });
+  await productoApi.buscar().then((data) => {
+    populateCatalog(data);
+    renderPageButtons(data);
+  });
 
-  const searchBox = document.getElementById("nombre");
+  // ESTE CAMBIO EVITA TENER QUE CLICKAR EN EL INPUT NOMBRE PARA DAR ENTER Y BUSCAR
+  const searchBox = document.getElementById("searchBox");
 
   searchBox.addEventListener("keypress", async function (event) {
     if (event.key === "Enter") {
-      const nombre = document.getElementById("nombre");
-      const precio_min = document.getElementById("precio_min");
-      const precio_max = document.getElementById("precio_max");
-      const exis_min = document.getElementById("exis_min");
-      const exis_max = document.getElementById("exis_max");
-
-      const keyInputs = [nombre, precio_min, precio_max, exis_min, exis_max];
-
-      const completeQuery = APIProductURL + makeGetQueryURL(keyInputs);
-
-      console.log("rNu", completeQuery);
-
-      await fetch(completeQuery)
-        .then((response) => response.json())
-        .then((data) => {
-          const container = document.getElementById("catalogo");
-          clearCatalog();
-          container.appendChild(makeRowOfCards(createCardArray(data)));
-          cleanPagesLists();
-          populatePagesLists([
-            createPageList(data["total_pages"], completeQuery),
-            createPageList(data["total_pages"], completeQuery),
-          ]);
-        });
+      await productoApi.buscar(true).then((data) => {
+        populateCatalog(data);
+        renderPageButtons(data);
+      });
     }
+  });
+
+  const brandHomeButton = document.getElementById("brand-home-button");
+
+  brandHomeButton.addEventListener("click", function () {
+    productoApi.queryHandler.clearQuery();
   });
 });
