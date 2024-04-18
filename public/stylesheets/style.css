@@ -38,3 +38,53 @@ a {
 .tag-button:active {
   background-color: #367a38; /* Cambiar color de fondo al hacer clic */
 }
+
+/*Css del registro*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.registro-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.registro-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.registro-form input,
+.registro-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.registro-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.registro-form button:hover {
+  background-color: #0056b3;
+}
+
+
