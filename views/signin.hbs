@@ -1,22 +1,24 @@
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form id="loginForm">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required><br><br>
-        
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" required><br><br>
-        
-        <button type="submit">Iniciar Sesión</button>
-    </form>
+    <div class="login-form">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required><br><br>
+            
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required><br><br>
+            
+            <button type="submit">Iniciar Sesión</button>
+        </form>
 
-    <div id="message"></div>
+        <div id="message"></div>
 
-    <div id="loggedInUser" style="display: none;">
-        <h3>¡Bienvenido!</h3>
-        <p id="loggedInUsername"></p>
+        <div id="loggedInUser" style="display: none;">
+            <h3>¡Bienvenido!</h3>
+            <p id="loggedInUsername"></p>
+        </div>
     </div>
-
+    <link rel="stylesheet" href="/stylesheets/style.css"> <!-- Vinculación al archivo style.css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/javascripts/login.js"></script>
 </body>

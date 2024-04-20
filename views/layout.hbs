@@ -29,6 +29,8 @@
   <input type="text" hidden id="APIBaseURL" value={{APIBaseURL}}>
   <div id="message-display" class="container-fluid"></div>
   
+  
+
   <!-- Agregamos la lista -->
   <ul id="tag-list"></ul>
 
@@ -36,22 +38,7 @@
   <script src="/static/javascripts/tagsMenu.js" type="module"></script>
 
   {{{body}}}
-</body>
-
-<body>
-    <button onclick="mostrarFormulario()">Registrarse</button>
   
-    <div id="formulario-registro" class="registro-form">
-        <h2>Registro de Usuario</h2>
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="text" id="usuario" placeholder="Usuario">
-        <input type="password" id="contraseña" placeholder="Contraseña">
-        <input type="checkbox" id="is_admin">
-        <label for="is_admin">¿Es administrador?</label>
-        <button onclick="registrarUsuario()">Registrarse</button>
-        <p id="mensaje"></p>
-    </div>
-
-    <script src="/static/javascripts/register.js"></script>
 </body>
+
 </html>

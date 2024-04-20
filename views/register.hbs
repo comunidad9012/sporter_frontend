@@ -1,0 +1,17 @@
+<!-- registro -->
+
+<h2>Registro de Usuario</h2>
+<form action="/register" method="post" class="registro-form">
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+    <input type="text" id="usuario" name="usuario" placeholder="Usuario">
+    <div class="password-container">
+        <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
+        <button type="button" id="togglePassword">Mostrar</button>
+    </div>
+    <input type="checkbox" id="is_admin" name="is_admin">
+    <label for="is_admin">¿Es administrador?</label>
+    <button type="submit">Registrarse</button>
+</form>
+<p id="mensaje"></p>
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Vinculación al archivo style.css -->
+<script src="/static/javascripts/register.js"></script>

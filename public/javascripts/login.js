@@ -12,13 +12,13 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: '/login', // poner la ruta de inicio de sesion del endpoint
+            url: '/login', // Endpoint para iniciar sesión
             contentType: 'application/json',
             data: JSON.stringify(loginData),
             success: function(response) {
                 $('#message').text("Inicio de sesión exitoso.");
-                $('#loggedInUsername').text("Usuario: " + response.nombre);
-                $('#loggedInUser').show();
+                // Redirige al usuario a la página de inicio o a donde desees
+                window.location.href = "/";
             },
             error: function(xhr, status, error) {
                 var errorMessage = xhr.responseJSON.error;

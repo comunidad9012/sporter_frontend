@@ -13,4 +13,14 @@ router.get("/actualizar/:productID", function (req, res, next) {
   });
 });
 
+// Registro
+router.get("/register", function (req, res, next) {
+  res.render("register");
+});
+
+// Inicio de sesion
+router.get("/signIn", function (req, res, next) {
+  res.render("signIn");
+});
+
 module.exports = router;

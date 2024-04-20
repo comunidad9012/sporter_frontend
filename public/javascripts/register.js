@@ -1,10 +1,20 @@
-function mostrarFormulario() {
-  var botonRegistro = document.querySelector("button");
-  var formulario = document.getElementById("formulario-registro");
+$(document).ready(function() {
+  // Función para alternar la visualización de la contraseña
+  $('#togglePassword').click(function() {
+      const passwordField = $('#contraseña');
+      const passwordFieldType = passwordField.attr('type');
+      
+      // Cambia el tipo de campo de contraseña entre 'password' y 'text'
+      if (passwordFieldType === 'password') {
+          passwordField.attr('type', 'text');
+          $(this).text('Ocultar');
+      } else {
+          passwordField.attr('type', 'password');
+          $(this).text('Mostrar');
+      }
+  });
+});
 
-  botonRegistro.style.display = "none";
-  formulario.style.display = "block";
-}
 document.addEventListener("DOMContentLoaded", function() {
   var botonRegistro = document.querySelector("button");
   botonRegistro.addEventListener("click", mostrarFormulario);
@@ -31,6 +41,7 @@ function registrarUsuario() {
       contraseña: contraseña,
       is_admin: is_admin
   };
+
 
   fetch('/signup/register', {
       method: 'POST',
