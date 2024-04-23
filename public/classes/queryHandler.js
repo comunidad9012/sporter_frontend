@@ -32,18 +32,12 @@ class queryHandler {
   #getSearchBoxValues() {
     const searchBox = document.getElementById("searchBox");
 
-    const nombre = searchBox.querySelector("#nombre");
-    const precio_min = searchBox.querySelector("#precio_min");
-    const precio_max = searchBox.querySelector("#precio_max");
-    const exis_min = searchBox.querySelector("#exis_min");
-    const exis_max = searchBox.querySelector("#exis_max");
-
-    const inputsArray = [nombre, precio_min, precio_max, exis_min, exis_max];
-
     const parameters = {};
 
-    for (const inputElement of inputsArray) {
-      if (isNullish(inputElement.value)) {
+    for (const parameter of this.#parametersNames) {
+      const inputElement = searchBox.querySelector(`#${parameter}`);
+
+      if (isNullish(inputElement) || isNullish(inputElement.value)) {
         continue;
       }
       parameters[inputElement.id] = inputElement.value;
