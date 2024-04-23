@@ -100,5 +100,102 @@ class apiEtiqueta extends apiHandler {
   }
 }
 
+class apiUsuario extends apiHandler {
+  static #resourceAffix = "user/";
+  #queryParameters = ["nombre", "usuario", "email", "is_admin", "page"];
+  queryHandler;
+
+  constructor() {
+    super(apiUsuario.#resourceAffix);
+    this.queryHandler = new queryHandler(this.#queryParameters);
+  }
+
+  async crear(newUserData = null) {
+    if (newUserData === null) {
+      throw new Error("Falta la informacion de usuario nuevo");
+    }
+
+    if (typeof newUserData === "object") {
+      const newUserDataForm = new FormData();
+      for (const attr in newUserData) {
+        newUserDataForm.append(attr, newUserData[attr]);
+      }
+      newUserData = newUserDataForm;
+    }
+
+    const postOptions = {
+      method: "POST",
+      body: newUserData,
+    };
+
+    return await fetch(this.resourceURL + "register", postOptions);
+  }
+
+  async actualizar(updatedUserData = null) {
+    if (updatedUserData === null) {
+      throw new Error("Falta la informacion de usuario nuevo");
+    }
+
+    const updatedUserDataForm = new FormData();
+    if (typeof updatedUserData === "object") {
+      for (const attr in updatedUserData) {
+        updatedUserDataForm.append(attr, updatedUserData[attr]);
+      }
+      updatedUserData = updatedUserDataForm;
+    }
+
+    const postOptions = {
+      method: "POST",
+      body: updatedUserData,
+    };
+
+    return await fetch(this.resourceURL + "actualizar", postOptions);
+  }
+
+  async login(username = "", password = "") {
+    const loginForm = new FormData();
+
+    loginForm.append("usuario", username);
+    loginForm.append("contraseña", password);
+
+    const postOptions = {
+      method: "POST",
+      credentials: "include",
+      body: loginForm,
+    };
+
+    return await fetch(this.resourceURL + "login", postOptions);
+  }
+
+  async eliminar(id = 0) {
+    return await fetch(this.resourceURL + "eliminar/" + id, {
+      method: "POST",
+    });
+  }
+
+  async buscar(esNuevaBusqueda = false) {
+    throw new Error("Metodo no implementado");
+
+    let query;
+
+    if (esNuevaBusqueda) {
+      query = this.queryHandler.fromSearchBox();
+    } else {
+      query = this.queryHandler.fromPersistence();
+    }
+
+    return await fetch(this.resourceURL + query).then((response) =>
+      response.json()
+    );
+  }
+
+  async getByIdentifier(identifier = 0) {
+    return await fetch(this.resourceURL + identifier).then((response) =>
+      response.json()
+    );
+  }
+}
+
 export const productoApi = new apiProducto();
 export const etiquetaApi = new apiEtiqueta();
+export const usuarioApi = new apiUsuario();
