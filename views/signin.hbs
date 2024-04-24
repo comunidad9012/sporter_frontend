@@ -1,7 +1,7 @@
 <body>
     <div class="login-form">
         <h2>Iniciar Sesión</h2>
-        <form id="loginForm">
+        <div id="loginForm">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required><br><br>
             
@@ -9,7 +9,7 @@
             <input type="password" id="contraseña" name="contraseña" required><br><br>
             
             <button type="submit">Iniciar Sesión</button>
-        </form>
+        </div>
 
         <div id="message"></div>
 
@@ -20,6 +20,6 @@
     </div>
     <link rel="stylesheet" href="/static/stylesheets/signin.css"> <!-- Vinculación al archivo style.css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/javascripts/login.js"></script>
+    <script src="/static/javascripts/login.js" type="module"></script>
 </body>
 

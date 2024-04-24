@@ -1,29 +1,24 @@
-$(document).ready(function() {
-    $('#loginForm').submit(function(event) {
-        event.preventDefault();
+import { usuarioApi } from "/static/classes/resources.js";
 
-        var usuario = $('#usuario').val();
-        var contraseña = $('#contraseña').val();
+document.addEventListener("DOMContentLoaded", async function () {
+  document
+    .getElementById("loginForm")
+    .addEventListener("click", async function (event) {
+      const usuario = document.getElementById("usuario").value;
+      const contraseña = document.getElementById("contraseña").value;
+      const messageElement = document.getElementById("message");
 
-        var loginData = {
-            usuario: usuario,
-            contraseña: contraseña
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/signin', // Endpoint para iniciar sesión
-            contentType: 'application/json',
-            data: JSON.stringify(loginData),
-            success: function(response) {
-                $('#message').text("Inicio de sesión exitoso.");
-                // Redirige al usuario a la página de inicio o a donde desees
-                window.location.href = "/";
-            },
-            error: function(xhr, status, error) {
-                var errorMessage = xhr.responseJSON.error;
-                $('#message').text(errorMessage);
-            }
-        });
+      await usuarioApi.login(usuario, contraseña).then((response) => {
+        if (response.status === 200) {
+          messageElement.textContent = "Inicio de sesión exitoso.";
+          document.getElementById("loggedInUser").style = "";
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        } else {
+          messageElement.textContent =
+            "Nombre de usuario o contraseña erróneos";
+        }
+      });
     });
 });
