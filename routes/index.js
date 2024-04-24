@@ -15,12 +15,16 @@ router.get("/actualizar/:productID", function (req, res, next) {
 
 // Registro
 router.get("/register", function (req, res, next) {
-  res.render("register");
+  res.render("register", {
+    APIBaseURL: process.env.REQUEST_URL,
+  });
 });
 
 // Inicio de sesion
 router.get("/signIn", function (req, res, next) {
-  res.render("signIn");
+  res.render("signin", {
+    APIBaseURL: process.env.REQUEST_URL,
+  });
 });
 
 module.exports = router;
