@@ -181,13 +181,13 @@ class apiUsuario extends apiHandler {
     });
   }
 
-  async buscar(esNuevaBusqueda = false) {
-    throw new Error("Metodo no implementado");
-
+  async buscar(esNuevaBusqueda = false, customQuery = null) {
     let query;
 
-    if (esNuevaBusqueda) {
+    if (esNuevaBusqueda && customQuery === null) {
       query = this.queryHandler.fromSearchBox();
+    } else if (esNuevaBusqueda && typeof customQuery === "object") {
+      query = this.queryHandler.fromCustom(customQuery);
     } else {
       query = this.queryHandler.fromPersistence();
     }
@@ -207,3 +207,7 @@ class apiUsuario extends apiHandler {
 export const productoApi = new apiProducto();
 export const etiquetaApi = new apiEtiqueta();
 export const usuarioApi = new apiUsuario();
+
+window.productoApi = productoApi;
+window.etiquetaApi = etiquetaApi;
+window.usuarioApi = usuarioApi;
