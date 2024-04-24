@@ -2,9 +2,11 @@ import { isNullish } from "/static/helpers/valueValidation.js";
 
 class queryHandler {
   #parametersNames;
+  #paramPrefix;
 
-  constructor(parametersNames) {
+  constructor(parametersNames, paramPrefix) {
     this.#parametersNames = parametersNames;
+    this.#paramPrefix = paramPrefix;
   }
 
   fromSearchBox() {
@@ -50,7 +52,9 @@ class queryHandler {
     const queryAsObject = {};
 
     for (const param of this.#parametersNames) {
-      const parameterValue = window.sessionStorage.getItem(param);
+      const parameterValue = window.sessionStorage.getItem(
+        this.#paramPrefix + param
+      );
       if (isNullish(parameterValue)) {
         continue;
       }
@@ -68,13 +72,16 @@ class queryHandler {
         continue;
       }
 
-      window.sessionStorage.setItem(param, queryParametersObject[param]);
+      window.sessionStorage.setItem(
+        this.#paramPrefix + param,
+        queryParametersObject[param]
+      );
     }
   }
 
   clearQuery() {
     for (const param of this.#parametersNames) {
-      window.sessionStorage.removeItem(param);
+      window.sessionStorage.removeItem(this.#paramPrefix + param);
     }
   }
 }

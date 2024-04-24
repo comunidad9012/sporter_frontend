@@ -12,11 +12,15 @@ class apiProducto extends apiHandler {
     "precio_min",
     "precio_max",
   ];
+  #paramPrefix = "prod_";
   queryHandler;
 
   constructor() {
     super(apiProducto.#resourceAffix);
-    this.queryHandler = new queryHandler(this.#queryParameters);
+    this.queryHandler = new queryHandler(
+      this.#queryParameters,
+      this.#paramPrefix
+    );
   }
 
   async crear(newProductData = null) {
@@ -102,12 +106,16 @@ class apiEtiqueta extends apiHandler {
 
 class apiUsuario extends apiHandler {
   static #resourceAffix = "user/";
-  #queryParameters = ["nombre", "usuario", "email", "is_admin", "page"];
+  #queryParameters = ["nombre", "usuario", "correo", "is_admin", "page"];
+  #paramPrefix = "user_";
   queryHandler;
 
   constructor() {
     super(apiUsuario.#resourceAffix);
-    this.queryHandler = new queryHandler(this.#queryParameters);
+    this.queryHandler = new queryHandler(
+      this.#queryParameters,
+      this.#paramPrefix
+    );
   }
 
   async crear(newUserData = null) {
