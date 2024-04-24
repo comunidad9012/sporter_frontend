@@ -2,7 +2,7 @@ import { usuarioApi } from "/static/classes/resources.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   document
-    .getElementById("loginForm")
+    .getElementById("login-btn")
     .addEventListener("click", async function (event) {
       const usuario = document.getElementById("usuario").value;
       const contraseña = document.getElementById("contraseña").value;
