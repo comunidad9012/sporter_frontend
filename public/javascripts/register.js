@@ -1,3 +1,5 @@
+import { usuarioApi } from "/static/classes/resources.js";
+
 $(document).ready(function() {
   // Función para alternar la visualización de la contraseña
   $('#togglePassword').click(function() {
@@ -22,38 +24,29 @@ document.addEventListener("DOMContentLoaded", function() {
   botonRegistro.addEventListener("click", registrarUsuario);
 });
 
-function registrarUsuario() {
-  console.log("API Base URL:", document.getElementById("APIBaseURL").value);
-
+async function registrarUsuario() {
 
   var nombre = document.getElementById("nombre").value;
   var usuario = document.getElementById("usuario").value;
   var contraseña = document.getElementById("contraseña").value;
-  var email = document.getElementById("email").value;
+  var correo = document.getElementById("correo").value;
   var is_admin = document.getElementById("is_admin").checked ? 1 : 0;
 
   var data = {
       nombre: nombre,
       usuario: usuario,
       contraseña: contraseña,
-      email: email,
+      correo: correo,
       is_admin: is_admin
   };
 
-  fetch(document.getElementById("APIBaseURL").value + '/api/signup/register', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-      })
+  await usuarioApi.crear(data)
       .then(response => response.json())
       .then(data => {
-          console.log(data);
           if (data.error) {
               document.getElementById("mensaje").innerText = data.error;
           } else {
-              document.getElementById("mensaje").innerText = data.Mensaje;
+              document.getElementById("mensaje").innerText = data.mensaje;
           }
       })
       .catch(error => {

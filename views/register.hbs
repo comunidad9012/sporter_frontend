@@ -3,7 +3,7 @@
 <div class="registro-form">
     <input type="text" id="nombre" name="nombre" placeholder="Nombre">
     <input type="text" id="usuario" name="usuario" placeholder="Usuario">
-    <input type="email" id="email" name="email" placeholder="ies@gmail.com">
+    <input type="email" id="correo" name="correo" placeholder="ies@gmail.com">
     <div class="password-container">
         <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
         <button type="button" id="togglePassword">Mostrar</button>
@@ -11,7 +11,7 @@
     <label for="is_admin">¿Es administrador?</label>
     <input type="checkbox" id="is_admin" name="is_admin">
     <button type="button" id="button-registro">Registrarse</button>
+    <p id="mensaje"></p>
 </div>
-<p id="mensaje"></p>
 <link rel="stylesheet" href="/static/stylesheets/register.css"> <!-- Vinculación al archivo style.css -->
-<script src="/static/javascripts/register.js"></script>
+<script src="/static/javascripts/register.js" type="module"></script>
