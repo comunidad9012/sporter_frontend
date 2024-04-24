@@ -1,7 +1,7 @@
 // Verifica si la URL actual es /administrar
 if (window.location.pathname === '/administration') {
     // Ejecuta el codigo cuando se carga la página en /administrar
-    fetch('http://localhost:5000/api/user/') 
+    fetch( document.getElementById("APIBaseURL").value + 'api/user/') 
         .then(response => response.json())
         .then(data => {
             const userData = data.search_result;
@@ -51,8 +51,9 @@ function openModal(nombre, correo) {
         formData.append('correo', nuevoCorreo);
 
         // Envía los datos de edición al servidor utilizando FormData
-        fetch('http://localhost:5000/api/user/actualizar', {
+        fetch( document.getElementById("APIBaseURL").value + 'api/user/actualizar', {
             method: 'POST',
+            credentials: "include",
             body: formData
         })
         .then(response => response.json())
@@ -60,7 +61,6 @@ function openModal(nombre, correo) {
             alert(data.mensaje); // Muestra el mensaje de éxito o error
             modal.hide(); // Cierra el modal después de enviar el formulario
         })
-        .catch(error => console.error('Error:', error));
     });
 }
 
@@ -70,8 +70,9 @@ function deleteUser(id) {
 
     // Si el usuario confirma la eliminacion
     if (confirmacion) {
-        fetch(`http://localhost:5000/api/user/eliminar/${id}`, {
-            method: 'POST'
+        fetch( document.getElementById("APIBaseURL").value + `api/user/eliminar/${id}`, {
+            method: 'POST',
+            credentials: "include",
         })
         .then(response => response.json())
         .then(data => {
@@ -81,6 +82,5 @@ function deleteUser(id) {
                 window.location.reload();
             }
         })
-        .catch(error => console.error('Error:', error));
     }
 }

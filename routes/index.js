@@ -29,7 +29,9 @@ router.get("/signIn", function (req, res, next) {
 
 // Administrar usuarios
 router.get("/administration", function (req, res, next) {
-  res.render("administration");
+  res.render("administration",{
+    APIBaseURL: process.env.REQUEST_URL,
+  });
 });
 
 module.exports = router;
