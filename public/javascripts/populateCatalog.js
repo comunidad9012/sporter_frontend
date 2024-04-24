@@ -2,9 +2,15 @@ import { productoApi } from "/static/classes/resources.js";
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 
 import { renderPageButtons } from "/static/javascripts/pagination.js";
+import { displayResponseMessages } from "/static/javascripts/alertMessages.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  await productoApi.buscar().then((data) => {
+  await productoApi.buscar().then(async (data) => {
+    if (data.search_result === undefined || data.search_result === null) {
+      productoApi.queryHandler.clearQuery();
+      data = await productoApi.buscar();
+    }
+
     populateCatalog(data);
     renderPageButtons(data);
   });
@@ -15,8 +21,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   searchBox.addEventListener("keypress", async function (event) {
     if (event.key === "Enter") {
       await productoApi.buscar(true).then((data) => {
-        populateCatalog(data);
-        renderPageButtons(data);
+        if (data.search_result === undefined || data.search_result === null) {
+          productoApi.queryHandler.clearQuery();
+          data.status_code = 400;
+          displayResponseMessages({ data: data });
+        } else {
+          populateCatalog(data);
+          renderPageButtons(data);
+        }
       });
     }
   });
@@ -25,5 +37,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   brandHomeButton.addEventListener("click", function () {
     productoApi.queryHandler.clearQuery();
+    window.location.href = "/";
   });
 });
