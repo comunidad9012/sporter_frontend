@@ -30,6 +30,7 @@ class apiProducto extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: newProductData,
     };
 
@@ -43,6 +44,7 @@ class apiProducto extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: updatedProductData,
     };
 
@@ -51,7 +53,8 @@ class apiProducto extends apiHandler {
 
   async eliminar(id = 0) {
     return await fetch(this.resourceURL + "eliminar/" + id, {
-      method: "POST",
+      method: "POST", 
+      credentials: "include",
     });
   }
 
@@ -133,6 +136,7 @@ class apiUsuario extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: newUserData,
     };
 
@@ -154,6 +158,7 @@ class apiUsuario extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: updatedUserData,
     };
 
@@ -178,6 +183,7 @@ class apiUsuario extends apiHandler {
   async eliminar(id = 0) {
     return await fetch(this.resourceURL + "eliminar/" + id, {
       method: "POST",
+      credentials: "include",
     });
   }
 
