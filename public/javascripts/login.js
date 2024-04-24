@@ -12,7 +12,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: '/signin', // Endpoint para iniciar sesión
+            url: '/api/login', // Endpoint para iniciar sesión
             contentType: 'application/json',
             data: JSON.stringify(loginData),
             success: function(response) {

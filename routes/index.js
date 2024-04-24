@@ -23,4 +23,9 @@ router.get("/signIn", function (req, res, next) {
   res.render("signIn");
 });
 
+// Administrar usuarios
+router.get("/administration", function (req, res, next) {
+  res.render("administration");
+});
+
 module.exports = router;
