@@ -6,7 +6,7 @@ function tagButtonQuery(tagButton, tagName) {
   tagButton.addEventListener("click", async function () {
     await productoApi.buscarPorEtiqueta(tagName).then((data) => {
       populateCatalog(data);
-      renderPageButtons(data);
+      renderPageButtons(productoApi, data);
     });
   });
 }

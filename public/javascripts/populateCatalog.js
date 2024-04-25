@@ -6,7 +6,7 @@ import { renderPageButtons } from "/static/javascripts/pagination.js";
 document.addEventListener("DOMContentLoaded", async function () {
   await productoApi.buscar().then((data) => {
     populateCatalog(data);
-    renderPageButtons(data);
+    renderPageButtons(productoApi, data);
   });
 
   // ESTE CAMBIO EVITA TENER QUE CLICKAR EN EL INPUT NOMBRE PARA DAR ENTER Y BUSCAR
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (event.key === "Enter") {
       await productoApi.buscar(true).then((data) => {
         populateCatalog(data);
-        renderPageButtons(data);
+        renderPageButtons(productoApi, data);
       });
     }
   });

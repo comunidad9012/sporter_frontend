@@ -1,21 +1,21 @@
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 import { productoApi } from "/static/classes/resources.js";
 
-function setCurrentPageNumber(pageNumber) {
+function setCurrentPageNumber(resouce, pageNumber) {
   if (pageNumber < 0) {
     pageNumber = -pageNumber;
   }
 
   window.sessionStorage.setItem(
     "oldPage",
-    window.sessionStorage.getItem("page")
+    window.sessionStorage.getItem(resouce.getPageParam())
   );
-  window.sessionStorage.setItem("page", pageNumber);
+  window.sessionStorage.setItem(resouce.getPageParam(), pageNumber);
 }
 
-function setActivePageButtonsOnClick() {
+function setActivePageButtonsOnClick(resouce) {
   let previousPageNumber = window.sessionStorage.getItem("oldPage");
-  const pageNumber = window.sessionStorage.getItem("page");
+  const pageNumber = window.sessionStorage.getItem(resouce.getPageParam());
 
   if (previousPageNumber === "null") {
     previousPageNumber = 1;
@@ -30,12 +30,18 @@ function setActivePageButtonsOnClick() {
   });
 }
 
-function setActivePageButtonsOnCreation(pageNumber, pageButton = null) {
-  if (String(pageNumber) === window.sessionStorage.getItem("page")) {
+function setActivePageButtonsOnCreation(
+  resouce,
+  pageNumber,
+  pageButton = null
+) {
+  if (
+    String(pageNumber) === window.sessionStorage.getItem(resouce.getPageParam())
+  ) {
     pageButton.classList.add("active");
   }
   if (
-    window.sessionStorage.getItem("page") === null &&
+    window.sessionStorage.getItem(resouce.getPageParam()) === null &&
     pageNumber === 1 &&
     pageButton !== null
   ) {
@@ -43,15 +49,15 @@ function setActivePageButtonsOnCreation(pageNumber, pageButton = null) {
   }
 }
 
-function makePageSearchElement(pageNumber) {
+function makePageSearchElement(resouce, pageNumber) {
   const SearchByPageNumberElement = document.createElement("a");
   SearchByPageNumberElement.classList.add("page-link");
   SearchByPageNumberElement.textContent = pageNumber;
   SearchByPageNumberElement.href = "#";
 
   SearchByPageNumberElement.addEventListener("click", async function (event) {
-    setCurrentPageNumber(pageNumber);
-    setActivePageButtonsOnClick(pageNumber);
+    setCurrentPageNumber(resouce, pageNumber);
+    setActivePageButtonsOnClick(resouce, pageNumber);
     await productoApi.buscar().then((data) => {
       populateCatalog(data);
     });
@@ -77,23 +83,23 @@ function cleanPagesLists() {
   }
 }
 
-function createPageBtn(number) {
+function createPageBtn(resouce, number) {
   const listItem = document.createElement("li");
 
-  setActivePageButtonsOnCreation(number, listItem);
+  setActivePageButtonsOnCreation(resouce, number, listItem);
   listItem.classList.add("page-item", `page-btn-${number}`);
 
-  const getSearchByPageNumber = makePageSearchElement(number);
+  const getSearchByPageNumber = makePageSearchElement(resouce, number);
 
   listItem.appendChild(getSearchByPageNumber);
   return listItem;
 }
 
-function createPageList(totalPages) {
+function createPageList(resouce, totalPages) {
   const pageBtnArray = [];
 
   for (let i = 1; i <= totalPages; i++) {
-    pageBtnArray.push(createPageBtn(i));
+    pageBtnArray.push(createPageBtn(resouce, i));
   }
 
   return pageBtnArray;
@@ -110,10 +116,10 @@ function populatePagesLists(pageBtnArray2D) {
   }
 }
 
-export function renderPageButtons(data) {
+export function renderPageButtons(resouce, data) {
   cleanPagesLists();
   populatePagesLists([
-    createPageList(data["total_pages"]),
-    createPageList(data["total_pages"]),
+    createPageList(resouce, data["total_pages"]),
+    createPageList(resouce, data["total_pages"]),
   ]);
 }

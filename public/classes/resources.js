@@ -23,6 +23,10 @@ class apiProducto extends apiHandler {
     );
   }
 
+  getPageParam() {
+    return this.#paramPrefix + "page";
+  }
+
   async crear(newProductData = null) {
     if (newProductData === null) {
       throw new Error("Falta la informacion de producto nuevo");
@@ -119,6 +123,10 @@ class apiUsuario extends apiHandler {
       this.#queryParameters,
       this.#paramPrefix
     );
+  }
+
+  getPageParam() {
+    return this.#paramPrefix + "page";
   }
 
   async crear(newUserData = null) {
