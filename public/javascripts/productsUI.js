@@ -169,7 +169,7 @@ function crearBotonModicar(id_producto) {
   const botonModificar = document.createElement("button");
 
   // estilizado de boton
-  botonModificar.classList.add("btn", "btn-secondary");
+  botonModificar.classList.add("btn", "btn-secondary", "modify-product-btn");
   botonModificar.textContent = "Modificar";
 
   // se agrega al boton un evento para click

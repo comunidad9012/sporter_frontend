@@ -1,3 +1,4 @@
+{{#if isAdmin}}
 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Crear
 </button>
@@ -31,9 +32,9 @@
                                 required />
                         </div>
                         <div class="col-md-6">
-                        <label for="precio" class="form-label">Etiqueta</label>
-                          <select class="form-select" aria-label="Default select example" id="select">
-                          </select>
+                            <label for="precio" class="form-label">Etiqueta</label>
+                            <select class="form-select" aria-label="Default select example" id="select">
+                            </select>
                         </div>
                     </div>
 
@@ -56,3 +57,4 @@
         </div>
     </div>
 </div>
+{{/if}}

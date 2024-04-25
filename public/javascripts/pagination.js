@@ -1,5 +1,6 @@
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 import { productoApi } from "/static/classes/resources.js";
+import { hideModify } from "/static/helpers/hideActions.js";
 
 function setCurrentPageNumber(resouce, pageNumber) {
   if (pageNumber < 0) {
@@ -61,6 +62,7 @@ function makePageSearchElement(resouce, pageNumber) {
     await productoApi.buscar().then((data) => {
       populateCatalog(data);
     });
+    hideModify()
   });
 
   return SearchByPageNumberElement;

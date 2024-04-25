@@ -12,7 +12,10 @@ function isPrivileged(cookies){
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("catalogo", { APIBaseURL: process.env.REQUEST_URL });
+  res.render("catalogo", { APIBaseURL: process.env.REQUEST_URL,
+    isAdmin : Number(req.cookies.is_admin),
+    isNotLogged : !Boolean(Number(req.cookies.logged_in))
+  });
 });
 
 router.get("/actualizar/:productID", function (req, res, next) {
