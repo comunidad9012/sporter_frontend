@@ -1,5 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('static/images/fondo-test.jpg');
+  background-size: cover; /* Para cubrir todo el cuerpo */
+  background-repeat: no-repeat; /* Para que no se repita la imagen */
 }
 
 a {
@@ -16,27 +19,6 @@ a {
 .tag-list-item {
   display: inline-block; /* Mostrar como bloque en línea */
   margin-right: 10px; /* Margen derecho entre elementos */
-}
-
-/* Estilo de los botones de categorías */
-.tag-button {
-  background-color: #4caf50; /* Color de fondo */
-  border: none; /* Sin borde */
-  color: white; /* Color del texto */
-  padding: 10px 20px; /* Espacio de relleno */
-  text-align: center; /* Alinear texto al centro */
-  text-decoration: none; /* Sin subrayado */
-  font-size: 16px; /* Tamaño de la fuente */
-  cursor: pointer; /* Cursor apuntador */
-  border-radius: 8px; /* Radio de borde para bordes redondeados */
-}
-
-.tag-button:hover {
-  background-color: #45a049; /* Cambiar color de fondo al pasar el mouse */
-}
-
-.tag-button:active {
-  background-color: #367a38; /* Cambiar color de fondo al hacer clic */
 }
 
 

@@ -1,0 +1,60 @@
+/* Estilos de los botones */
+.btn-4, #login-btn, .btn.btn-primary.btn-sm {
+    position: relative;
+    padding: 5px 10px; /* tamaño del padding */
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 3px; /* espacio entre letras */
+    text-indent: 3px;
+    z-index: 2;
+}
+
+
+.btn-4, #login-btn, .btn.btn-primary.btn-sm {
+    border: none; 
+}
+
+.btn-4::after, #login-btn::after, .btn.btn-primary.btn-sm::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(90deg, rgb(255, 30, 143), rgb(19, 227, 255), rgb(251, 255, 20), rgb(255, 15, 15));
+    background-size: 300%;
+    border-radius: 5px;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.btn-4:hover::after, #login-btn:hover::after, .btn.btn-primary.btn-sm:hover::after {
+    background-position: 100%;
+    filter: blur(15px);
+}
+
+.btn-4::before, #login-btn::before, .btn.btn-primary.btn-sm::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(90deg, rgb(255, 30, 143), rgb(19, 227, 255), rgb(251, 255, 20), rgb(255, 15, 15));
+    background-size: 300%;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.btn-4:hover::before, #login-btn:hover::before, .btn.btn-primary.btn-sm:hover::before {
+    background-position: 100%;
+}
+
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: #343a40; /* Cambiar el color de fondo de la barra de navegación */
+}
+
+
