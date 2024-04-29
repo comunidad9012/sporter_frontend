@@ -1,6 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('/static/images/background.jpg');
+  background-image: url('/static/images/background1.jpg');
   background-size: 100% 100%; /* Ajusta el tamaño de la imagen al 100% del ancho y alto de la página */
   background-repeat: no-repeat; /* Para que no se repita la imagen */
   margin: 0; /* Elimina los márgenes predeterminados */
