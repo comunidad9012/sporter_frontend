@@ -31,13 +31,9 @@ router.get("/actualizar/:productID", function (req, res, next) {
 
 // Registro
 router.get("/register", function (req, res, next) {
-  if (isPrivileged(req.cookies)){
     res.render("register", {
       APIBaseURL: process.env.REQUEST_URL,
     });
-  } else{
-    res.redirect("/not_allowed")
-  }
 });
 
 // Inicio de sesion
