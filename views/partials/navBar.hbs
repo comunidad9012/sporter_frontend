@@ -19,7 +19,11 @@
                 {{#if isAdmin}}
                 <a href="/administration" id="administration-btn" class="btn btn-4 ml-3">Registro de clientes</a>
                 {{/if}}
-                
+
+                {{#if isLogged}}
+                <a href="#" id="logout-btn" class="btn btn-4 btn-sm mt-3 ml-3">Cerrar Sesión</a>
+                {{/if}}
+
                 {{#if isNotLogged}}
                 <a href="/signIn" id="login-btn" class="btn btn-4 mt-3 ml-3">Iniciar Sesión</a>
                 <a href="/register" id="register-btn" class="btn btn-4 btn-sm mt-3 ml-3">Registrarse</a>
@@ -30,3 +34,16 @@
     </nav>
     <link rel="stylesheet" href="/static/stylesheets/navbar.css"> 
 </header>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            for (let i = 0; i < document.cookie.match(/=/g).length; i++) {
+                document.cookie = document.cookie.replace(/=\w+/, "=''")
+            }
+            window.location.reload()
+        })
+    })
+
+</script>

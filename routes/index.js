@@ -14,7 +14,8 @@ function isPrivileged(cookies){
 router.get("/", function (req, res, next) {
   res.render("catalogo", { APIBaseURL: process.env.REQUEST_URL,
     isAdmin : Number(req.cookies.is_admin),
-    isNotLogged : !Boolean(Number(req.cookies.logged_in))
+    isNotLogged : !Boolean(Number(req.cookies.logged_in)),
+    isLogged : Boolean(Number(req.cookies.logged_in))
   });
 });
 
