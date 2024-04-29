@@ -30,23 +30,28 @@ async function registrarUsuario() {
   var usuario = document.getElementById("usuario").value;
   var contraseña = document.getElementById("contraseña").value;
   var correo = document.getElementById("correo").value;
-  var is_admin = document.getElementById("is_admin").checked ? 1 : 0;
 
   var data = {
       nombre: nombre,
       usuario: usuario,
       contraseña: contraseña,
       correo: correo,
-      is_admin: is_admin
   };
 
   await usuarioApi.crear(data)
       .then(response => response.json())
-      .then(data => {
+      .then(async (data) => {
           if (data.error) {
               document.getElementById("mensaje").innerText = data.error;
           } else {
               document.getElementById("mensaje").innerText = data.mensaje;
+              await usuarioApi.login(usuario, contraseña).then((response) => {
+                if (response.status === 200) {
+                  setTimeout(() => {
+                    window.location.href = "/";
+                  }, 2000);
+                } 
+              });
           }
       })
       .catch(error => {
