@@ -183,6 +183,9 @@ class apiUsuario extends apiHandler {
       method: "POST",
       credentials: "include",
       body: loginForm,
+      headers: {
+        started: new Date().getTime()
+      }
     };
 
     return await fetch(this.resourceURL + "login", postOptions);
