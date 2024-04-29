@@ -8,25 +8,24 @@
             <div>
                 {{>searchBox}}
                 
-            <div class="row justify-content-start text-left" id="botones">
-                <!-- Botones que se crean automáticamente con JavaScript -->
-    
+                <div class="row justify-content-start text-left" id="botones">
+                    <!-- Botones que se crean automáticamente con JavaScript -->
+                </div>
             </div>
-            </div>
+
 
             <div>
+                {{>createModal}}
                 {{#if isAdmin}}
-                <a href="/administration" id="administration-btn" class="btn btn-primary btn-4 mt-3 ml-3">Registros</a>
+                <a href="/administration" id="administration-btn" class="btn btn-4 mt-3 ml-3">Registro de clientes</a>
                 {{/if}}
-
+                
                 {{#if isNotLogged}}
-                <a href="/signIn" id="login-btn" class="btn btn-primary mt-3 ml-3">Iniciar Sesión</a>
-                <a href="/register" class="btn btn-primary btn-sm mt-3 ml-3">Registrarse</a>
-                
+                <a href="/signIn" id="login-btn" class="btn btn-4 mt-3 ml-3">Iniciar Sesión</a>
+                <a href="/register" id="register-btn" class="btn btn-4 btn-sm mt-3 ml-3">Registrarse</a>
                 {{/if}}
-                
             </div>
-            {{>createModal}}
+            
         </div>
     </nav>
     <link rel="stylesheet" href="/static/stylesheets/navbar.css"> 

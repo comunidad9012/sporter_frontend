@@ -1,0 +1,40 @@
+.container {
+    margin-top: 50px;
+}
+
+.form-container {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.form-label {
+    font-weight: bold;
+    color: black; /* Cambia el color del texto de las etiquetas a negro */
+}
+
+.form-control {
+    margin-bottom: 15px;
+    color: black; /* Cambia el color del texto de los campos de entrada a negro */
+    border: 1px solid black; /* Agrega un borde negro a los campos de entrada */
+    border-radius: 5px; /* Redondea los bordes de los campos de entrada */
+}
+
+.btn-danger {
+    margin-right: 10px;
+}
+
+.btn-warning {
+    margin-right: 10px;
+}
+
+#image_display {
+    max-width: 50%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.text-center {
+    color: white; /* Cambia el color del texto a blanco */
+}

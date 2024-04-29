@@ -1,9 +1,12 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('static/images/fondo-test.jpg');
-  background-size: cover; /* Para cubrir todo el cuerpo */
+  background-image: url('/static/images/background.jpg');
+  background-size: 100% 100%; /* Ajusta el tamaño de la imagen al 100% del ancho y alto de la página */
   background-repeat: no-repeat; /* Para que no se repita la imagen */
+  margin: 0; /* Elimina los márgenes predeterminados */
+  padding: 0; /* Elimina los rellenos predeterminados */
 }
+
 
 a {
   color: #00B7FF;
