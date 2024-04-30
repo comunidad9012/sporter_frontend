@@ -1,11 +1,13 @@
-<h2>Tabla de usuarios</h2>
+<div class="container">
+<h2 class="my-3 text-white fw-bolder text-center">Tabla de usuarios</h2>
 <body>
-    <table id="userTable">
-        <thead>
+    <table id="userTable" class="table table-dark table-hover text-center">
+        <thead class="table-light">
             <tr>
                 <th>Nombre</th>
                 <th>Usuario</th>
                 <th>Correo</th>
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody id="userData">
@@ -44,9 +46,40 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" id="modal-header">
+          <h2 id="titulo"></h2>      
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Campos de nombre y correo -->
+        <table id="userTable" class="table table-dark table-hover text-center">
+        <thead class="table-light">
+            <tr>
+                <th>Dia y Hora</th>
+            </tr>
+        </thead>
+        <tbody id="modalHistory">
+            <!-- Aquí se agregarán dinámicamente las filas de usuarios -->
+        </tbody>
+    </table>
+      </div>
+      <div class="modal-footer">
+        <!-- Botón para cancelar -->
+        <a href="/administration" class="link-offset-2 link-underline link-underline-opacity-0 link-light" id="buttonLista"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button></a>
+        <!-- Botón para guardar cambios -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/" class="link-offset-2 link-underline link-underline-opacity-0 link-light"><button type="button" class="btn btn-success">Volver</button></a>
 
 
     <link rel="stylesheet" href="/static/stylesheets/administration.css"> <!-- Vinculación al archivo style.css -->
     <script src="/static/javascripts/administration.js"></script>
+</div>
 </body>
 </html>

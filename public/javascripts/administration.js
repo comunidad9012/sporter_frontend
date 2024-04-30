@@ -10,12 +10,13 @@ if (window.location.pathname === '/administration') {
             userData.forEach(user => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${user.nombre}</td>
-                    <td>${user.usuario}</td>
-                    <td>${user.correo}</td>
+                    <td class="align-middle">${user.nombre}</td>
+                    <td class="align-middle">${user.usuario}</td>
+                    <td class="align-middle">${user.correo}</td>
                     <td>
-                        <button onclick="openModal('${user.nombre}', '${user.correo}', '${user.is_admin}', '${user.usuario}')">Modificar</button>
-                        <button onclick="deleteUser(${user.id})">Eliminar</button>
+                        <button onclick="history(${user.id})" class="btn btn-secondary">Historial</button>
+                        <button onclick="openModal('${user.nombre}', '${user.correo}', '${user.is_admin}', '${user.usuario}')"  class="btn btn-warning">Modificar</button>
+                        <button onclick="deleteUser('${user.id}', '${user.usuario}')" class="btn btn-danger">Eliminar</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -23,6 +24,35 @@ if (window.location.pathname === '/administration') {
         })
         .catch(error => console.error('Error:', error));
 }
+
+function history(idUser){
+    fetch( document.getElementById("APIBaseURL").value + `api/user/${idUser}`, {
+        method: 'GET',
+        credentials: "include",
+    })
+    .then(response => response.json())
+    .then(data => {
+       const modal = new bootstrap.Modal(document.getElementById('historyModal'));
+       const modalHead= document.getElementById("titulo")
+       modalHead.textContent = `Inicio de sesiones ${data.usuario}`
+       modal.show();
+       data.sesiones.forEach(element => {
+        var fecha = moment(element)
+        var fechaFormateada= fecha.format('DD/MM/YYYY HH:mm')
+        tabla=document.getElementById("modalHistory")
+        tableRow=document.createElement("tr")
+        tableColumn=document.createElement("td")
+        tableColumn.textContent = fechaFormateada
+        tableRow.appendChild(tableColumn)
+        tabla.appendChild(tableRow)
+       });
+    })
+}
+
+const buttonLista = document.getElementById("buttonLista")
+buttonLista.addEventListener("click", ()=>{
+    
+})
 
 
 
