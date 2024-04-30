@@ -32,6 +32,14 @@ function history(idUser){
     })
     .then(response => response.json())
     .then(data => {
+        let historyTableRows = Array.from(document.getElementById("modalHistory").children)
+
+        if (historyTableRows.length > 0){
+            for(const row of historyTableRows){
+                document.getElementById("modalHistory").removeChild(row)
+            }
+        }
+
        const modal = new bootstrap.Modal(document.getElementById('historyModal'));
        const modalHead= document.getElementById("titulo")
        modalHead.textContent = `Inicio de sesiones ${data.usuario}`
