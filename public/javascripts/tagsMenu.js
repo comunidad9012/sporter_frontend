@@ -1,6 +1,7 @@
 import { etiquetaApi, productoApi } from "/static/classes/resources.js";
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 import { renderPageButtons } from "/static/javascripts/pagination.js";
+import { hideModify } from "/static/helpers/hideActions.js";
 
 function tagButtonQuery(tagButton, tagName) {
   tagButton.addEventListener("click", async function () {
@@ -8,6 +9,7 @@ function tagButtonQuery(tagButton, tagName) {
       populateCatalog(data);
       renderPageButtons(productoApi, data);
     });
+    hideModify();
   });
 }
 
