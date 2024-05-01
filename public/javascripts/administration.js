@@ -1,7 +1,7 @@
 // Verifica si la URL actual es /administrar
 if (window.location.pathname === '/administration') {
     // Ejecuta el codigo cuando se carga la página en /administrar
-    fetch( document.getElementById("APIBaseURL").value + 'api/user/') 
+    fetch( document.getElementById("APIBaseURL").value + '/api/user/') 
         .then(response => response.json())
         .then(data => {
             const userData = data.search_result;
@@ -26,7 +26,7 @@ if (window.location.pathname === '/administration') {
 }
 
 function history(idUser){
-    fetch( document.getElementById("APIBaseURL").value + `api/user/${idUser}`, {
+    fetch( document.getElementById("APIBaseURL").value + `/api/user/${idUser}`, {
         method: 'GET',
         credentials: "include",
     })
@@ -95,7 +95,7 @@ function openModal(nombre, correo, is_admin, username) {
         formData.append("usuario", username)
 
         // Envía los datos de edición al servidor utilizando FormData
-        fetch( document.getElementById("APIBaseURL").value + 'api/user/actualizar', {
+        fetch( document.getElementById("APIBaseURL").value + '/api/user/actualizar', {
             method: 'POST',
             credentials: "include",
             body: formData
@@ -114,7 +114,7 @@ function deleteUser(id) {
 
     // Si el usuario confirma la eliminacion
     if (confirmacion) {
-        fetch( document.getElementById("APIBaseURL").value + `api/user/eliminar/${id}`, {
+        fetch( document.getElementById("APIBaseURL").value + `/api/user/eliminar/${id}`, {
             method: 'POST',
             credentials: "include",
         })

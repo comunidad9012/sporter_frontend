@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // imagenElement.value = data["img_orig_name"];
     });
 
-  const sumbitBtn = document.getElementById("sumbitUpdate");
+  const sumbitBtn = document.getElementById("submitUpdate");
 
   sumbitBtn.addEventListener("click", async function () {
     const updateForm = new FormData();
