@@ -30,7 +30,7 @@ async function populateList() {
     const button = document.createElement("button");
     button.classList.add("btn", "btn-4", "tag-button");
     button.setAttribute("data-tag", tag.nombre);
-    button.textContent = `${tag.nombre} (${tag.total_productos})`;
+    button.textContent = `${tag.nombre} `;
 
     // Agregar el botón al elemento de lista
     listItem.appendChild(button);
