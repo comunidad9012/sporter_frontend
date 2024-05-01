@@ -1,26 +1,48 @@
-<body>
+
+<section id="principal_title">
+    <h1>Sporter Management</h1>
+</section>
+<section id="container_form">
+    <div class="info_form">
+        <img src="/static/icons/sporter_logo.png" alt="logo_sporter" class="logo_sporter">
+    </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var logo = document.querySelector('.logo_sporter');
+            setTimeout(function() {
+                logo.classList.add('visible');
+            }, 500);
+        });
+    </script>
     <div class="login-form">
-        <h2>Iniciar Sesión</h2>
+        <h2 class="title">Inicio de sesión</h2>
         <div id="loginForm">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required><br><br>
-
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required><br><br>
-
-            <button type="submit" id="login-btn">Iniciar Sesión</button>
-            <a href="/" class="link-offset-2 link-underline link-underline-opacity-0 link-light"><button type="button">Volver</button></a>
-
+            <div class="cont_input">
+                <input type="text" id="usuario" name="usuario" placeholder="Usuario" required><br><br>
+            </div>
+            <div class="cont_input">
+                <div class="password_container">
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
+                    <button type="button" id="togglePassword">
+                        <img src="/static/icons/eyePassword.svg" alt="eye_for_password" class="toggle_icon_password">
+                    </button>
+                </div>
+            </div>
+            <button type="submit" id="login-btn" class="button_submit">Iniciar sesión</button>
+            <div class="button_container">
+                <a href="/" class="link-offset-2 link-underline link-underline-opacity-0 link-light">
+                <button type="button" class="button_submit">Volver</button>
+            </a>
+            </div>
         </div>
-
         <div id="message"></div>
-
         <div id="loggedInUser" style="display: none;">
             <h3>¡Bienvenido!</h3>
             <p id="loggedInUsername"></p>
         </div>
     </div>
+    
+    </section>
     <link rel="stylesheet" href="/static/stylesheets/signin.css"> <!-- Vinculación al archivo style.css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/javascripts/login.js" type="module"></script>
-</body>

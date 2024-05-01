@@ -5,14 +5,14 @@ $(document).ready(function() {
   $('#togglePassword').click(function() {
       const passwordField = $('#contraseña');
       const passwordFieldType = passwordField.attr('type');
-      
+      const icon=$(this).find('img');
       // Cambia el tipo de campo de contraseña entre 'password' y 'text'
       if (passwordFieldType === 'password') {
           passwordField.attr('type', 'text');
-          $(this).text('Ocultar');
+          icon.attr('src','/static/icons/eyeClosed.svg')
       } else {
           passwordField.attr('type', 'password');
-          $(this).text('Mostrar');
+          icon.attr('src','/static/icons/eyePassword.svg')
       }
   });
 });

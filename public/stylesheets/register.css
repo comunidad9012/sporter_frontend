@@ -1,66 +1,131 @@
-/*Css del registro*/
-body {
-    font-family: Arial, sans-serif;
+/*Estilos del registro*/
+*{
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
-}
-
-.registro-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-.registro-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.registro-form input,
-.registro-form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-sizing: border-box;
 }
-
-.registro-form button {
-    background-color: #465f7a;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+/*Variables*/
+:root{
+    --button-color-red:#cc2b03;
+    --dark-color:#212529;
+    --color-text:#ffff;
 }
-
-.registro-form button:hover {
-    background-color: #0056b3;
+body{
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-  /* Añadimos estilos para el botón de visualización de contraseña */
-.password-container {
+#principal_title{
+    color: var(--color-text);
+    margin: auto;
     position: relative;
+    top:  70px;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.password-container input {
-    width: calc(100% - 32px);
-    margin-bottom: 10px;
+#container_form{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 38px 22px rgba(0,0,0,0.75);
+    border-radius: 8px;
+    overflow: hidden;
+}
+/*Info section*/
+.info_form{
+    flex: 1; /* Hacer que la sección de información ocupe todo el espacio disponible */
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    justify-content: center; /* Centrar horizontalmente los elementos */
+    background-color: var(--dark-color);
 }
 
-.password-container button {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+.logo_sporter{
+    max-width: 80%; /* Ajustar el tamaño máximo del logo */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
+    object-fit: contain; /* Ajustar el tamaño del logo manteniendo su relación de aspecto */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.logo_sporter.visible{opacity: 1;} 
+
+/*Form section*/
+.registro-form{
+    background-color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 310px;
+    padding: 20px;
+    
+}
+.title{
+    color: var(--color-text);
+    text-align: center;
+}
+.registro-form input{
+    height: 45px;
+    padding-left: 5px;
     border: none;
-    background: none;
-    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.password-container{
+    background-color: #ffff;
+    position: relative;
+    border-radius: 5px;
+}
+#contraseña{width: 100%;}
+#togglePassword{
+    position: absolute;
+    height: 100%;
+    width: 50px;
+    right: 0;
+    border: none;
+    background-color: transparent;
+}
+.toggle_icon_password{width: 40px;}
+
+.button_register{
+    border: 2px solid var(--button-color-red);
+    background-color: var(--dark-color);
+    height: 50px;
+    transition:all 0.4s ease ;
+    width: 250px;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    color: var(--color-text);
+}
+.button_register:hover{
+    background-color: var(--button-color-red);
+    border: none;
+    scale: 1.01;
+}
+
+.button_container {
+    margin-top: 10px; /* Ajusta el margen superior */
+    display: flex;
+    justify-content: center; /* Centra el botón */
+}
+
+.button_container button {
+    border: 2px solid var(--button-color-red);
+    background-color: var(--dark-color);
+    height: 50px;
+    transition: all 0.4s ease;
+    width: 250px;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    color: var(--color-text);
+}
+
+.button_container button:hover {
+    background-color: var(--button-color-red);
+    border: none;
+    scale: 1.01;
+}
+
+
+/*media query*/
+@media only screen and (max-width:720px){
+    .info_form{display: none;}
 }

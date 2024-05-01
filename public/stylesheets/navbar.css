@@ -1,4 +1,9 @@
 /* Estilos de los botones */
+.tag-button { 
+    width: 100px; /* Establecer un ancho fijo para todos los tags */
+    height: 43px; /* Establecer un alto fijo para todos los tags */
+}
+
 .btn-4,
 .tag-button { /* Agregar estilos para los botones tipo button */
     position: relative;
@@ -70,6 +75,7 @@
 }
 
 #login-btn.btn-4::after,
+#logout-btn.btn-4::after,
 #register-btn.btn-4::after,
 #administration-btn.btn-4::after,
 .parallelogram-button.btn-4::after { 
@@ -85,6 +91,7 @@
 }
 
 #login-btn.btn-4::before,
+#logout-btn.btn-4::before,
 #register-btn.btn-4::before,
 #administration-btn.btn-4::before,
 .parallelogram-button.btn-4::before { 
@@ -100,6 +107,7 @@
     z-index: -1;
 }
 
+#logout-btn.btn-4:hover::before,
 #login-btn.btn-4:hover::before,
 #administration-btn.btn-4:hover::before,
 #register-btn.btn-4:hover::before,

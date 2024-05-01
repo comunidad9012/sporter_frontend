@@ -1,5 +1,21 @@
 import { usuarioApi } from "/static/classes/resources.js";
 
+        $(document).ready(function() {
+  // Función para alternar la visualización de la contraseña
+        $('#togglePassword').click(function() {
+            const passwordField = $('#contraseña');
+            const passwordFieldType = passwordField.attr('type');
+            const icon=$(this).find('img');
+            // Cambia el tipo de campo de contraseña entre 'password' y 'text'
+            if (passwordFieldType === 'password') {
+                passwordField.attr('type', 'text');
+                icon.attr('src','/static/icons/eyeClosed.svg')
+            } else {
+                passwordField.attr('type', 'password');
+                icon.attr('src','/static/icons/eyePassword.svg')
+            }
+        });
+        });
 document.addEventListener("DOMContentLoaded", async function () {
   document
     .getElementById("login-btn")
