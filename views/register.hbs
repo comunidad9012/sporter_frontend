@@ -1,0 +1,38 @@
+<!-- registro -->
+<section id="principal_title">
+    <h1>Sporter Management</h1>
+</section>
+<section id="container_form">
+    <div class="info_form">
+        <img src="/static/icons/sporter_logo.png" alt="logo_sporter" class="logo_sporter">
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var logo = document.querySelector('.logo_sporter');
+            setTimeout(function() {
+                logo.classList.add('visible');
+            }, 500);
+        });
+    </script>
+    <div class="registro-form">
+        <h2 class="title">¡Registrate!</h2>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+        <input type="text" id="usuario" name="usuario" placeholder="Usuario">
+        <input type="email" id="correo" name="correo" placeholder="ies@gmail.com">
+        <div class="password-container">
+            <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña">
+            <button type="button" id="togglePassword">
+                <img src="/static/icons/eyePassword.svg" alt="eye_for_password" class="toggle_icon_password">
+            </button>
+        </div>
+        <button type="button" id="button-registro" class="button_register">Registrarse</button>
+        <div class="button_container">
+            <a href="/" class="link-offset-2 link-underline link-underline-opacity-0 link-light">
+                <button type="button" class="button_register">Volver</button>
+            </a>
+        </div>
+        <p id="mensaje"></p>
+    </div>
+</section>
+<link rel="stylesheet" href="/static/stylesheets/register.css"> <!-- Vinculación al archivo style.css -->
+<script src="/static/javascripts/register.js" type="module"></script>

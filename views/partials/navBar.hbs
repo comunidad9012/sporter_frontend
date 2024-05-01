@@ -1,12 +1,51 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark px-3 flex-column">
-        <div class="container-fluid align-items-center justify-content-sm-center">
-            <a href="#" id="brand-home-button" class="navbar-brand">Catalogo</a>
-            {{>searchBox}}
-            {{>createModal}}
-        </div>
-        <div class="row justify-content-start text-left" id="botones">
+        <div class="container-fluid align-items-center justify-content-between">
+            <a href="/" id="brand-home-button" class="navbar-brand">
+                <img src="static/icons/sporter_logo.png" alt="catalogo" height="70">
+            </a>
+
+            <div>
+                {{>searchBox}}
+
+                <div class="row justify-content-start text-left" id="botones">
+                    <!-- Botones que se crean automáticamente con JavaScript -->
+                </div>
+            </div>
+
+
+            <div class="d-flex align-items-center">
+                {{>createModal}}
+                {{#if isAdmin}}
+                <a href="/administration" id="administration-btn" class="btn btn-4 ml-3">Registro de clientes</a>
+                {{/if}}
+
+                {{#if isLogged}}
+                <a href="#" id="logout-btn" class="btn btn-4 btn-sm ml-3">Cerrar Sesión</a>
+                {{/if}}
+
+                {{#if isNotLogged}}
+                <a href="/signIn" id="login-btn" class="btn btn-4 mt-3 ml-3">Iniciar Sesión</a>
+                <a href="/register" id="register-btn" class="btn btn-4 btn-sm mt-3 ml-3">Registrarse</a>
+                {{/if}}
+            </div>
+
         </div>
     </nav>
+    <link rel="stylesheet" href="/static/stylesheets/navbar.css">
 </header>
 
+<!-- Funcion de cerrar sesion  -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            for (let i = 0; i < document.cookie.match(/=/g).length; i++) {
+                document.cookie = document.cookie.replace(/=\w+/, "=")
+            }
+            window.location.reload()
+        })
+    })
+
+</script>

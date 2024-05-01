@@ -1,10 +1,12 @@
 <script defer src="/static/javascripts/updateForm.js" type="module"></script>
+<link rel="stylesheet" href="/static/stylesheets/editarProducto.css">
 <input type="text" name="" id="productID" value="{{productID}}" hidden>
 
 <div class="container">
-<div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-            <div class="mb-5" >
+            <h2 class="text-center mb-4">Editar producto</h2>
+            <div class="form-container mb-5">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" required>
@@ -16,27 +18,27 @@
                 </div>
                 
                 <div class="mb-3 row">
-                <div class="mb-3 col">
-                    <label for="precio" class="form-label">Precio:</label>
-                    <input type="number" id="precio" name="precio" min="0" class="form-control" required>
-                </div>
-                
-                <div class="mb-3 col">
-                    <label for="existencias" class="form-label">Existencias:</label>
-                    <input type="number" id="existencias" min="0" name="existencias" class="form-control">
-                </div>
+                    <div class="mb-3 col">
+                        <label for="precio" class="form-label">Precio:</label>
+                        <input type="number" id="precio" name="precio" min="0" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3 col">
+                        <label for="existencias" class="form-label">Existencias:</label>
+                        <input type="number" id="existencias" min="0" name="existencias" class="form-control">
+                    </div>
                 </div>
                 
                 <div class="mb-3 row">
-                <div class="mb-3 col">
-                    <label for="imagen" class="form-label">Nueva Imagen:</label>
-                    <input type="file" id="imagen" name="imagen" class="form-control">
-                </div>
-                
-                <div class="mb-3 col">
-                    <label for="precio" class="form-label">Etiqueta</label>
-                    <select class="form-select" aria-label="Default select example" id="select"> </select>
-                </div>
+                    <div class="mb-3 col">
+                        <label for="imagen" class="form-label">Nueva Imagen:</label>
+                        <input type="file" id="imagen" name="imagen" class="form-control">
+                    </div>
+                    
+                    <div class="mb-3 col">
+                        <label for="precio" class="form-label">Etiqueta</label>
+                        <select class="form-select" aria-label="Default select example" id="select"> </select>
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -44,13 +46,12 @@
                     <img src="" alt="" id="image_display">
                 </div>
                 
-            </form>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
                     Eliminar Producto
                 </button>
                 {{>eliminarProducto}}
                 <a href="/"><button type="" class="btn btn-warning mr-5">Volver a Catalogo</button></a>
-                <button type="submit" id="sumbitUpdate" class="btn btn-primary">Actualizar Producto</button>
+                <button type="submit" id="submitUpdate" class="btn btn-primary">Actualizar Producto</button>
             </div>
         </div>
     </div>

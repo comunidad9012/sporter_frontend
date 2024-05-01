@@ -2,9 +2,11 @@ import { isNullish } from "/static/helpers/valueValidation.js";
 
 class queryHandler {
   #parametersNames;
+  #paramPrefix;
 
-  constructor(parametersNames) {
+  constructor(parametersNames, paramPrefix) {
     this.#parametersNames = parametersNames;
+    this.#paramPrefix = paramPrefix;
   }
 
   fromSearchBox() {
@@ -32,18 +34,12 @@ class queryHandler {
   #getSearchBoxValues() {
     const searchBox = document.getElementById("searchBox");
 
-    const nombre = searchBox.querySelector("#nombre");
-    const precio_min = searchBox.querySelector("#precio_min");
-    const precio_max = searchBox.querySelector("#precio_max");
-    const exis_min = searchBox.querySelector("#exis_min");
-    const exis_max = searchBox.querySelector("#exis_max");
-
-    const inputsArray = [nombre, precio_min, precio_max, exis_min, exis_max];
-
     const parameters = {};
 
-    for (const inputElement of inputsArray) {
-      if (isNullish(inputElement.value)) {
+    for (const parameter of this.#parametersNames) {
+      const inputElement = searchBox.querySelector(`#${parameter}`);
+
+      if (isNullish(inputElement) || isNullish(inputElement.value)) {
         continue;
       }
       parameters[inputElement.id] = inputElement.value;
@@ -56,7 +52,9 @@ class queryHandler {
     const queryAsObject = {};
 
     for (const param of this.#parametersNames) {
-      const parameterValue = window.sessionStorage.getItem(param);
+      const parameterValue = window.sessionStorage.getItem(
+        this.#paramPrefix + param
+      );
       if (isNullish(parameterValue)) {
         continue;
       }
@@ -74,13 +72,16 @@ class queryHandler {
         continue;
       }
 
-      window.sessionStorage.setItem(param, queryParametersObject[param]);
+      window.sessionStorage.setItem(
+        this.#paramPrefix + param,
+        queryParametersObject[param]
+      );
     }
   }
 
   clearQuery() {
     for (const param of this.#parametersNames) {
-      window.sessionStorage.removeItem(param);
+      window.sessionStorage.removeItem(this.#paramPrefix + param);
     }
   }
 }

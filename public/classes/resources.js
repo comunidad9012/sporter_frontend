@@ -12,11 +12,19 @@ class apiProducto extends apiHandler {
     "precio_min",
     "precio_max",
   ];
+  #paramPrefix = "prod_";
   queryHandler;
 
   constructor() {
     super(apiProducto.#resourceAffix);
-    this.queryHandler = new queryHandler(this.#queryParameters);
+    this.queryHandler = new queryHandler(
+      this.#queryParameters,
+      this.#paramPrefix
+    );
+  }
+
+  getPageParam() {
+    return this.#paramPrefix + "page";
   }
 
   async crear(newProductData = null) {
@@ -26,6 +34,7 @@ class apiProducto extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: newProductData,
     };
 
@@ -39,6 +48,7 @@ class apiProducto extends apiHandler {
 
     const postOptions = {
       method: "POST",
+      credentials: "include",
       body: updatedProductData,
     };
 
@@ -47,7 +57,8 @@ class apiProducto extends apiHandler {
 
   async eliminar(id = 0) {
     return await fetch(this.resourceURL + "eliminar/" + id, {
-      method: "POST",
+      method: "POST", 
+      credentials: "include",
     });
   }
 
@@ -100,5 +111,120 @@ class apiEtiqueta extends apiHandler {
   }
 }
 
+class apiUsuario extends apiHandler {
+  static #resourceAffix = "user/";
+  #queryParameters = ["nombre", "usuario", "correo", "is_admin", "page"];
+  #paramPrefix = "user_";
+  queryHandler;
+
+  constructor() {
+    super(apiUsuario.#resourceAffix);
+    this.queryHandler = new queryHandler(
+      this.#queryParameters,
+      this.#paramPrefix
+    );
+  }
+
+  getPageParam() {
+    return this.#paramPrefix + "page";
+  }
+
+  async crear(newUserData = null) {
+    if (newUserData === null) {
+      throw new Error("Falta la informacion de usuario nuevo");
+    }
+
+    if (typeof newUserData === "object") {
+      const newUserDataForm = new FormData();
+      for (const attr in newUserData) {
+        newUserDataForm.append(attr, newUserData[attr]);
+      }
+      newUserData = newUserDataForm;
+    }
+
+    const postOptions = {
+      method: "POST",
+      credentials: "include",
+      body: newUserData,
+    };
+
+    return await fetch(this.resourceURL + "register", postOptions);
+  }
+
+  async actualizar(updatedUserData = null) {
+    if (updatedUserData === null) {
+      throw new Error("Falta la informacion de usuario nuevo");
+    }
+
+    const updatedUserDataForm = new FormData();
+    if (typeof updatedUserData === "object") {
+      for (const attr in updatedUserData) {
+        updatedUserDataForm.append(attr, updatedUserData[attr]);
+      }
+      updatedUserData = updatedUserDataForm;
+    }
+
+    const postOptions = {
+      method: "POST",
+      credentials: "include",
+      body: updatedUserData,
+    };
+
+    return await fetch(this.resourceURL + "actualizar", postOptions);
+  }
+
+  async login(username = "", password = "") {
+    const loginForm = new FormData();
+
+    loginForm.append("usuario", username);
+    loginForm.append("contraseña", password);
+
+    const postOptions = {
+      method: "POST",
+      credentials: "include",
+      body: loginForm,
+      headers: {
+        started: new Date().getTime()
+      }
+    };
+
+    return await fetch(this.resourceURL + "login", postOptions);
+  }
+
+  async eliminar(id = 0) {
+    return await fetch(this.resourceURL + "eliminar/" + id, {
+      method: "POST",
+      credentials: "include",
+    });
+  }
+
+  async buscar(esNuevaBusqueda = false, customQuery = null) {
+    let query;
+
+    if (esNuevaBusqueda && customQuery === null) {
+      query = this.queryHandler.fromSearchBox();
+    } else if (esNuevaBusqueda && typeof customQuery === "object") {
+      query = this.queryHandler.fromCustom(customQuery);
+    } else {
+      query = this.queryHandler.fromPersistence();
+    }
+
+    return await fetch(this.resourceURL + query).then((response) =>
+      response.json()
+    );
+  }
+
+  async getByIdentifier(identifier = 0) {
+    return await fetch(this.resourceURL + identifier).then((response) =>
+      response.json()
+    );
+  }
+}
+
 export const productoApi = new apiProducto();
 export const etiquetaApi = new apiEtiqueta();
+export const usuarioApi = new apiUsuario();
+
+window.productoApi = productoApi;
+window.etiquetaApi = etiquetaApi;
+window.usuarioApi = usuarioApi;

@@ -80,7 +80,7 @@ function createCard(infoProducto) {
   // al elemento imagen se agrega este estilizado
   // para obligarlo a utilizar todo el espacio de la tarjeta
   productoImagen.style = "width: 100%; height: auto";
-  productoNombre.classList.add("text-center", "mt-2", "nameElement");
+  productoNombre.classList.add( "text-center", "mt-2", "nameElement");
   productoPrecio.classList.add("col", "text-center", "priceElement");
   productoExistencias.classList.add("col", "text-center", "priceElement");
   productoTarjeta.classList.add(
@@ -88,7 +88,14 @@ function createCard(infoProducto) {
     "m-3",
     "cardElement",
     "d-flex",
-    "flex-column"
+    "flex-column",
+    "subtle",
+    "bg-white",
+    "border",
+    "border-danger",
+    "p-3",
+    "rounded-3",
+    "border-2",
   );
 
   // se agregan los elementos a la fila de numericos, en orden precio luego existencias
@@ -169,7 +176,7 @@ function crearBotonModicar(id_producto) {
   const botonModificar = document.createElement("button");
 
   // estilizado de boton
-  botonModificar.classList.add("btn", "btn-secondary");
+  botonModificar.classList.add("btn", "btn-secondary", "modify-product-btn");
   botonModificar.textContent = "Modificar";
 
   // se agrega al boton un evento para click
@@ -184,3 +191,5 @@ function crearBotonModicar(id_producto) {
 
   return botonModificar;
 }
+
+

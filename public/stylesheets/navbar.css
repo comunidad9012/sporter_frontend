@@ -1,0 +1,118 @@
+/* Estilos de los botones */
+.tag-button { 
+    width: 100px; /* Establecer un ancho fijo para todos los tags */
+    
+}
+
+.btn-4,
+.tag-button { /* Agregar estilos para los botones tipo button */
+    position: relative;
+    padding: 5px 10px; /* tamaño del padding */
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 3px; /* espacio entre letras */
+    text-indent: 3px;
+    z-index: 2;
+    border: none; /* Eliminar borde predeterminado */
+}
+
+.btn-4::after,
+.tag-button::after { /* Estilos para el pseudo-elemento ::after */
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 110%;
+    left: -10%;
+    top: 0;
+    transform: skew(20deg, 0deg);
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.btn-4::before,
+.tag-button::before { /* Estilos para el pseudo-elemento ::before */
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: skew(20deg, 0deg);
+    border: 3px solid #cc2b03;
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.btn-4:hover::before,
+.tag-button:hover::before { /* Estilos de hover para el pseudo-elemento ::before */
+    background-color: #cc2b03;
+    border: 3px solid #cc2b03;
+    transform: skew(20deg, 0deg) scale(1.1);
+}
+
+
+/* Estilos de la barra de navegación */
+.navbar {
+    background-color: #343a40; /* Cambiar el color de fondo de la barra de navegación */
+}
+
+
+/* Estilos del botón de registro */
+#login-btn.btn-4,
+#register-btn.btn-4,
+#administration-btn.btn-4,
+.parallelogram-button.btn-4 { /* Agregamos la clase .parallelogram-button.btn-4 aquí */
+    position: relative;
+    padding: 5px 10px; /* tamaño del padding */
+    font-size: 12px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 3px; /* espacio entre letras */
+    text-indent: 3px;
+    z-index: 2;
+    border: none;
+}
+
+#login-btn.btn-4::after,
+#logout-btn.btn-4::after,
+#register-btn.btn-4::after,
+#administration-btn.btn-4::after,
+.parallelogram-button.btn-4::after { 
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 110%;
+    left: 100%; /* Cambia el lado para que esté a la derecha */
+    top: 0;
+    transform: skew(-20deg, 0deg); /* Invertir el skew aquí */
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+#login-btn.btn-4::before,
+#logout-btn.btn-4::before,
+#register-btn.btn-4::before,
+#administration-btn.btn-4::before,
+.parallelogram-button.btn-4::before { 
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: skew(-20deg, 0deg); /* Invertir el skew aquí */
+    border: 3px solid #cc2b03;
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+#logout-btn.btn-4:hover::before,
+#login-btn.btn-4:hover::before,
+#administration-btn.btn-4:hover::before,
+#register-btn.btn-4:hover::before,
+.parallelogram-button.btn-4:hover::before { 
+    background-color: #cc2b03;
+    border: 3px solid #cc2b03;
+    transform: skew(-20deg, 0deg) scale(1.1); /* Invertir el skew aquí */
+}

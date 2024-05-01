@@ -2,6 +2,7 @@ import { productoApi } from "/static/classes/resources.js";
 import { populateCatalog } from "/static/javascripts/productsUI.js";
 
 import { renderPageButtons } from "/static/javascripts/pagination.js";
+import { hideModify } from "/static/helpers/hideActions.js";
 import { displayResponseMessages } from "/static/javascripts/alertMessages.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -12,7 +13,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     populateCatalog(data);
-    renderPageButtons(data);
+    renderPageButtons(productoApi, data);
+    hideModify()
   });
 
   // ESTE CAMBIO EVITA TENER QUE CLICKAR EN EL INPUT NOMBRE PARA DAR ENTER Y BUSCAR
@@ -30,7 +32,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           renderPageButtons(data);
         }
       });
-    }
+    hideModify()
+  }
   });
 
   const brandHomeButton = document.getElementById("brand-home-button");
@@ -39,4 +42,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     productoApi.queryHandler.clearQuery();
     window.location.href = "/";
   });
+  hideModify()
 });
