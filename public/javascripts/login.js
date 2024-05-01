@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       await usuarioApi.login(usuario, contraseña).then((response) => {
         if (response.status === 200) {
           messageElement.textContent = "Inicio de sesión exitoso.";
+          messageElement.style = "";
           document.getElementById("loggedInUser").style = "";
           setTimeout(() => {
             window.location.href = "/";
